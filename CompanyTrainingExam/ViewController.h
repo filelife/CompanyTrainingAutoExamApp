@@ -9,9 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ViewController : NSViewController
-@property (nonatomic, strong) IBOutlet NSTextField * textField;
-@property (nonatomic, strong) IBOutlet NSTextField * answerField;
-@property (nonatomic, strong) IBOutlet NSTextField * tagField;
-- (IBAction)buttonClicked:(id)sender;
+
 @end
 

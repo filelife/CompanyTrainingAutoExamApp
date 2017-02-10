@@ -13,6 +13,7 @@
 		BFB807A81E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB807A61E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld */; };
 		BFB807AA1E4D954E00F48235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB807A91E4D954E00F48235 /* Assets.xcassets */; };
 		BFB807AD1E4D954E00F48235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB807AB1E4D954E00F48235 /* Main.storyboard */; };
+		BFFC76CF1E4DF550004128E1 /* AddProblemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFFC76CD1E4DF550004128E1 /* AddProblemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,8 @@
 		BFB807A91E4D954E00F48235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB807AC1E4D954E00F48235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFB807AE1E4D954E00F48235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFFC76CC1E4DF550004128E1 /* AddProblemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProblemViewController.h; sourceTree = "<group>"; };
+		BFFC76CD1E4DF550004128E1 /* AddProblemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProblemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +70,8 @@
 				BFB807AE1E4D954E00F48235 /* Info.plist */,
 				BFB807A61E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld */,
 				BFB807A01E4D954E00F48235 /* Supporting Files */,
+				BFFC76CC1E4DF550004128E1 /* AddProblemViewController.h */,
+				BFFC76CD1E4DF550004128E1 /* AddProblemViewController.m */,
 			);
 			path = CompanyTrainingExam;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 				BFB807A81E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld in Sources */,
 				BFB807A51E4D954E00F48235 /* ViewController.m in Sources */,
 				BFB807A21E4D954E00F48235 /* main.m in Sources */,
+				BFFC76CF1E4DF550004128E1 /* AddProblemViewController.m in Sources */,
 				BFB8079F1E4D954E00F48235 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,6 +297,7 @@
 				BFB807B31E4D954E00F48235 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
