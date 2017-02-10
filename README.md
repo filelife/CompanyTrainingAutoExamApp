@@ -1,0 +1,2 @@
+# CompanyTrainingAutoExamApp
+为企业培训随机生成考卷
