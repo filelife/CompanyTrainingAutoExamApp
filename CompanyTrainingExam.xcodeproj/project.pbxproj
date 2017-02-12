@@ -56,13 +56,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BFB807911E4D954E00F48235 = {
+		BF8A70811E50CA2800721B34 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				BF8A70731E5036C300721B34 /* ProblemEntity+CoreDataClass.h */,
 				BF8A70741E5036C300721B34 /* ProblemEntity+CoreDataClass.m */,
 				BF8A70751E5036C300721B34 /* ProblemEntity+CoreDataProperties.h */,
 				BF8A70761E5036C300721B34 /* ProblemEntity+CoreDataProperties.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		BFB807911E4D954E00F48235 = {
+			isa = PBXGroup;
+			children = (
+				BF8A70811E50CA2800721B34 /* Model */,
 				BFB8079C1E4D954E00F48235 /* CompanyTrainingExam */,
 				BFB8079B1E4D954E00F48235 /* Products */,
 			);

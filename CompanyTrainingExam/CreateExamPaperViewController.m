@@ -12,6 +12,9 @@
 @interface CreateExamPaperViewController ()
 @property (nonatomic, strong) NSManagedObjectContext * context;
 @property (nonatomic, strong) NSString * examContext;
+@property (nonatomic, strong) NSMutableArray * choiceArray;
+@property (nonatomic, strong) NSMutableArray * fillInTheBlanksArray;
+@property (nonatomic, strong) NSMutableArray * judgmentArray;
 @property (nonatomic, strong) NSArray * problemArray;
 @end
 
@@ -22,8 +25,38 @@
     AppDelegate * appdelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     _context = appdelegate.managedObjectContext;
     [self allProblem];
-    // Do view setup here.
+    [self updateCurrentDataInfo];
+    
 }
+
+- (void)updateCurrentDataInfo {
+    if(self.choiceArray == nil) {
+        self.choiceArray = [NSMutableArray array];
+    }
+    
+    if(self.fillInTheBlanksArray == nil) {
+        self.fillInTheBlanksArray = [NSMutableArray array];
+    }
+    
+    if(self.judgmentArray == nil) {
+        self.judgmentArray = [NSMutableArray array];
+    }
+    
+    for(ProblemEntity * entity in self.problemArray) {
+        if([entity.type isEqualToString:@"选择题"]) {
+            [self.choiceArray addObject:entity];
+        } else if([entity.type isEqualToString:@"判断题"]) {
+            [self.judgmentArray addObject:entity];
+        } else if([entity.type isEqualToString:@"填空题"]){
+            [self.fillInTheBlanksArray addObject:entity];
+        }
+    }
+    self.choiceNumLab.stringValue = [NSString stringWithFormat:@"%ld",self.choiceArray.count];
+    self.judgmentNumLab.stringValue = [NSString stringWithFormat:@"%ld",self.judgmentArray.count];
+    self.fillInTheBlanksNumLab.stringValue = [NSString stringWithFormat:@"%ld",self.fillInTheBlanksArray.count];
+    
+}
+
 - (void)allProblem {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ProblemEntity"];
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
