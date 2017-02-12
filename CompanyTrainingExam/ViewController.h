@@ -9,6 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface ViewController : NSViewController
-
+@property (nonatomic, strong) IBOutlet NSTableView * problemTableView;
+- (IBAction)freshDataClicked:(id)sender;
+- (IBAction)deleteData:(id)sender;
+- (IBAction)createExamPaper:(id)sender;
 @end
 

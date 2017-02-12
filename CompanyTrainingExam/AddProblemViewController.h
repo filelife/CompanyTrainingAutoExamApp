@@ -11,6 +11,8 @@
 @interface AddProblemViewController : NSViewController
 @property (nonatomic, strong) IBOutlet NSTextField * textField;
 @property (nonatomic, strong) IBOutlet NSTextField * answerField;
-@property (nonatomic, strong) IBOutlet NSTextField * tagField;
+@property (nonatomic, strong) IBOutlet NSPopUpButton * tagField;
 - (IBAction)buttonClicked:(id)sender;
+- (IBAction)cancelClicked:(id)sender;
+//- (IBAction)dismissController:(id)sender;s
 @end

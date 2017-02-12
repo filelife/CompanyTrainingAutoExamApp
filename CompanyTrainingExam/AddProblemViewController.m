@@ -7,26 +7,82 @@
 //
 
 #import "AddProblemViewController.h"
-
+#import <CoreData/CoreData.h>
+#import "ProblemEntity+CoreDataClass.h"
+#import "AppDelegate.h"
 @interface AddProblemViewController ()
-
+@property (nonatomic, strong) NSManagedObjectContext * context;
 @end
 
 @implementation AddProblemViewController
+- (void)loadView {
+    [super loadView];
+    AppDelegate * appdelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    _context = appdelegate.managedObjectContext;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
 }
 
+- (void)viewWillDisappear {
+    _context = nil;
+}
 - (IBAction)buttonClicked:(id)sender {
-    NSLog(@"Click success:%@",self.textField.stringValue);
-    NSDictionary * problem = @{
-                               @"Problem":self.textField.stringValue,
-                               @"Answer":self.answerField.stringValue,
-                               @"Tag":self.tagField.stringValue
-                               };
-    NSLog(@"problem:\n%@",problem);
+    [self addProblem];
+}
+
+- (IBAction)cancelClicked:(id)sender {
+    
+    [self removeFromParentViewController];
+}
+
+
+/**
+ 新增个人记录
+ */
+- (void)addProblem {
+    /**
+     回顾SQL新增记录的过程
+     
+     1. 拼接一个INSERT的SQL语句
+     2. 执行SQL
+     */
+    // 1. 实例化并让context“准备”将一条个人记录增加到数据库
+    
+    ProblemEntity *p = [NSEntityDescription insertNewObjectForEntityForName:@"ProblemEntity" inManagedObjectContext:_context];
+    if(self.textField.stringValue.length) {
+        p.problem = self.textField.stringValue;
+    }
+    if(self.answerField.stringValue.length) {
+        p.answer = self.answerField.stringValue;
+    }
+    if(self.tagField.stringValue.length) {
+        p.type = self.tagField.selectedItem.title;
+    }
+    p.problemid = [self getMaxID];
+   
+         // 3. 保存(让context保存当前的修改)
+    if ([_context save:nil]) {
+        NSLog(@"新增成功");
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"FreshData" object:self];
+    } else {
+        NSLog(@"新增失败");
+    }
+}
+
+- (NSNumber *) getMaxID {
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProblemInfo" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSNumber * mlastMaxId = [data objectForKey:@"lastMaxId"];
+    NSInteger mMaxId = mlastMaxId.integerValue + 1;
+    [data setValue:@(mMaxId) forKey:@"lastMaxId"];
+    [data writeToFile:plistPath atomically:YES];
+    return @(mMaxId);
+    
 }
 
 @end

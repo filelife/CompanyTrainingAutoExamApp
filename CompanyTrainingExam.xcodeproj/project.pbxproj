@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF8A70771E5036C300721B34 /* ProblemEntity+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A70741E5036C300721B34 /* ProblemEntity+CoreDataClass.m */; };
+		BF8A70781E5036C300721B34 /* ProblemEntity+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A70761E5036C300721B34 /* ProblemEntity+CoreDataProperties.m */; };
+		BF8A707A1E50601A00721B34 /* ProblemInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF8A70791E50601A00721B34 /* ProblemInfo.plist */; };
+		BF8A707D1E50A6B100721B34 /* CreateExamPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A707C1E50A6B100721B34 /* CreateExamPaperViewController.m */; };
+		BF8A70801E50BAB200721B34 /* AddProblemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A707F1E50BAB200721B34 /* AddProblemWindowController.m */; };
 		BFB8079F1E4D954E00F48235 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB8079E1E4D954E00F48235 /* AppDelegate.m */; };
 		BFB807A21E4D954E00F48235 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB807A11E4D954E00F48235 /* main.m */; };
 		BFB807A51E4D954E00F48235 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB807A41E4D954E00F48235 /* ViewController.m */; };
@@ -17,6 +22,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF8A70731E5036C300721B34 /* ProblemEntity+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ProblemEntity+CoreDataClass.h"; path = "CompanyTrainingExam/ProblemEntity+CoreDataClass.h"; sourceTree = "<group>"; };
+		BF8A70741E5036C300721B34 /* ProblemEntity+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ProblemEntity+CoreDataClass.m"; path = "CompanyTrainingExam/ProblemEntity+CoreDataClass.m"; sourceTree = "<group>"; };
+		BF8A70751E5036C300721B34 /* ProblemEntity+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ProblemEntity+CoreDataProperties.h"; path = "CompanyTrainingExam/ProblemEntity+CoreDataProperties.h"; sourceTree = "<group>"; };
+		BF8A70761E5036C300721B34 /* ProblemEntity+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ProblemEntity+CoreDataProperties.m"; path = "CompanyTrainingExam/ProblemEntity+CoreDataProperties.m"; sourceTree = "<group>"; };
+		BF8A70791E50601A00721B34 /* ProblemInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProblemInfo.plist; sourceTree = "<group>"; };
+		BF8A707B1E50A6B100721B34 /* CreateExamPaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateExamPaperViewController.h; sourceTree = "<group>"; };
+		BF8A707C1E50A6B100721B34 /* CreateExamPaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateExamPaperViewController.m; sourceTree = "<group>"; };
+		BF8A707E1E50BAB200721B34 /* AddProblemWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProblemWindowController.h; sourceTree = "<group>"; };
+		BF8A707F1E50BAB200721B34 /* AddProblemWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProblemWindowController.m; sourceTree = "<group>"; };
 		BFB8079A1E4D954E00F48235 /* CompanyTrainingExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompanyTrainingExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB8079D1E4D954E00F48235 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BFB8079E1E4D954E00F48235 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -45,6 +59,10 @@
 		BFB807911E4D954E00F48235 = {
 			isa = PBXGroup;
 			children = (
+				BF8A70731E5036C300721B34 /* ProblemEntity+CoreDataClass.h */,
+				BF8A70741E5036C300721B34 /* ProblemEntity+CoreDataClass.m */,
+				BF8A70751E5036C300721B34 /* ProblemEntity+CoreDataProperties.h */,
+				BF8A70761E5036C300721B34 /* ProblemEntity+CoreDataProperties.m */,
 				BFB8079C1E4D954E00F48235 /* CompanyTrainingExam */,
 				BFB8079B1E4D954E00F48235 /* Products */,
 			);
@@ -72,6 +90,11 @@
 				BFB807A01E4D954E00F48235 /* Supporting Files */,
 				BFFC76CC1E4DF550004128E1 /* AddProblemViewController.h */,
 				BFFC76CD1E4DF550004128E1 /* AddProblemViewController.m */,
+				BF8A70791E50601A00721B34 /* ProblemInfo.plist */,
+				BF8A707B1E50A6B100721B34 /* CreateExamPaperViewController.h */,
+				BF8A707C1E50A6B100721B34 /* CreateExamPaperViewController.m */,
+				BF8A707E1E50BAB200721B34 /* AddProblemWindowController.h */,
+				BF8A707F1E50BAB200721B34 /* AddProblemWindowController.m */,
 			);
 			path = CompanyTrainingExam;
 			sourceTree = "<group>";
@@ -142,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFB807AA1E4D954E00F48235 /* Assets.xcassets in Resources */,
+				BF8A707A1E50601A00721B34 /* ProblemInfo.plist in Resources */,
 				BFB807AD1E4D954E00F48235 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -153,10 +177,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF8A707D1E50A6B100721B34 /* CreateExamPaperViewController.m in Sources */,
 				BFB807A81E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld in Sources */,
+				BF8A70801E50BAB200721B34 /* AddProblemWindowController.m in Sources */,
 				BFB807A51E4D954E00F48235 /* ViewController.m in Sources */,
+				BF8A70781E5036C300721B34 /* ProblemEntity+CoreDataProperties.m in Sources */,
 				BFB807A21E4D954E00F48235 /* main.m in Sources */,
 				BFFC76CF1E4DF550004128E1 /* AddProblemViewController.m in Sources */,
+				BF8A70771E5036C300721B34 /* ProblemEntity+CoreDataClass.m in Sources */,
 				BFB8079F1E4D954E00F48235 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
