@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "ProblemEntity+CoreDataProperties.h"
+
+
 @interface ViewController() <NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate>
 @property (nonatomic, strong) NSString * textFieldValue;
 @property (nonatomic, strong) NSManagedObjectContext * context;
@@ -19,10 +21,11 @@
 - (void)loadView {
     [super loadView];
     AppDelegate * appdelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
+    [appdelegate openDB];
     _context = appdelegate.managedObjectContext;
     self.problemTableView.delegate = self;
     self.problemTableView.dataSource = self;
-    self.problemTableView.backgroundColor = [NSColor lightGrayColor];
+    self.problemTableView.backgroundColor = [NSColor whiteColor ];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(freshDataClicked:)
@@ -32,9 +35,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setWantsLayer:YES];
+    [self.view.layer setBackgroundColor:[[NSColor whiteColor ] CGColor]];
+    
+    
+    
+}
+
+- (void)viewDidAppear {
+    [super viewDidAppear];
+    
     [self allProblem];
-    [self.problemTableView reloadData];
-    // Do any additional setup after loading the view.
+    if(self.problemTableView) {
+        [self.problemTableView reloadData];
+    }
+    
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
@@ -86,7 +101,7 @@
 }
 
 - (IBAction)deleteData:(id)sender {
-    [self deleteAllData];
+    [self showAlert];
 }
 
 - (void)deleteAllData {
@@ -113,8 +128,7 @@
     [data writeToFile:plistPath atomically:YES];
 }
 
-- (void)allProblem
-{
+- (void)allProblem {
     // 1. 实例化一个查询(Fetch)请求
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ProblemEntity"];
     
@@ -125,21 +139,41 @@
     // 如果要通过key path查询字段，需要使用%K
     //    request.predicate = [NSPredicate predicateWithFormat:@"%K CONTAINS '1'", @"phoneNo"];
     // 直接查询字表中的条件
-    
     // 2. 让_context执行查询数据
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
     self.problemArray = [appDelegate.managedObjectContext executeFetchRequest:request error:nil];
     for (ProblemEntity *p in self.problemArray) {
         NSLog(@"Data:%ld %@ %@ %@\n",p.problemid.integerValue, p.problem, p.type, p.answer);
         
-        // 在CoreData中，查询是懒加载的
-        // 在CoreData本身的SQL查询中，是不使用JOIN的，不需要外键
-        // 这种方式的优点是：内存占用相对较小，但是磁盘读写的频率会较高
+       
         
     }
     
 }
 
-
+- (void)showAlert {
+    NSAlert *alert = [[NSAlert alloc]init];
+    //可以设置产品的icon
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    //添加两个按钮吧
+    [alert addButtonWithTitle:@"确定"];
+    [alert addButtonWithTitle:@"取消"];
+    //正文
+    alert.messageText = @"删除";
+    //描述文字
+    alert.informativeText = @"确定删除所有题目？";
+    //弹窗类型 默认类型 NSAlertStyleWarning
+    [alert setAlertStyle:NSAlertStyleWarning];
+    //回调Block
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            [self deleteAllData];
+            [self allProblem];
+            [self.problemTableView reloadData];
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
+}
 
 @end

@@ -65,26 +65,54 @@
 }
 
 - (IBAction)createExamPaper:(id)sender {
-    [self allProblem];
-    [self formPaper];
-    [self createPaper];
+    
+    [self showAlert];
+    
 }
 
 - (void)formPaper {
     self.examContext = [NSString stringWithFormat:@"考卷:\n"];
+    NSString * answer = [NSString stringWithFormat:@"\n\n答案:\n"];
     NSInteger index = 1;
-    for(ProblemEntity * entity in self.problemArray) {
-        NSString * problem = [NSString stringWithFormat:@"%@\n",entity.problem];
+//    for(ProblemEntity * entity in self.problemArray) {
+//        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
+//        self.examContext = [self.examContext stringByAppendingString:problem];
+//    }
+    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
+    
+    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
+    for(ProblemEntity * entity in self.choiceArray) {
+        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
-    }
-    NSString * answer = [NSString stringWithFormat:@"答案:\n"];
-    index = 1;
-    for(ProblemEntity * entity in self.problemArray) {
         NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
         answer = [answer stringByAppendingString:answerTemp];
         index++;
-        
     }
+    
+    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"二、填空题:\n"]];
+    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n二、填空题:\n"]];
+    for(ProblemEntity * entity in self.fillInTheBlanksArray) {
+        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
+        self.examContext = [self.examContext stringByAppendingString:problem];
+        NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
+        answer = [answer stringByAppendingString:answerTemp];
+        index++;
+    }
+    
+    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"三、判断题:\n"]];
+    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、判断题:\n"]];
+    for(ProblemEntity * entity in self.judgmentArray) {
+        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
+        self.examContext = [self.examContext stringByAppendingString:problem];
+        NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
+        answer = [answer stringByAppendingString:answerTemp];
+        index++;
+    }
+    
+    
+    
+    index = 1;
+    
     self.examContext = [self.examContext stringByAppendingString:answer];
 }
 
@@ -107,4 +135,28 @@
     [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[fm currentDirectoryPath]];
 }
 
+- (void)showAlert {
+    NSAlert *alert = [[NSAlert alloc]init];
+    //可以设置产品的icon
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    //添加两个按钮吧
+    [alert addButtonWithTitle:@"确定"];
+    [alert addButtonWithTitle:@"取消"];
+    //正文
+    alert.messageText = @"创建试卷";
+    //描述文字
+    alert.informativeText = @"确定创建试卷？";
+    //弹窗类型 默认类型 NSAlertStyleWarning
+    [alert setAlertStyle:NSAlertStyleWarning];
+    //回调Block
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            [self allProblem];
+            [self formPaper];
+            [self createPaper];
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
+}
 @end

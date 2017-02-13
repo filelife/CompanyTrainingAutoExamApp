@@ -18,6 +18,15 @@
 		BFB807A81E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BFB807A61E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld */; };
 		BFB807AA1E4D954E00F48235 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BFB807A91E4D954E00F48235 /* Assets.xcassets */; };
 		BFB807AD1E4D954E00F48235 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB807AB1E4D954E00F48235 /* Main.storyboard */; };
+		BFC9A3551E5167430032ABF1 /* new_problem_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A34C1E5167430032ABF1 /* new_problem_normal.png */; };
+		BFC9A3561E5167430032ABF1 /* new_problem_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A34D1E5167430032ABF1 /* new_problem_pressed.png */; };
+		BFC9A3571E5167430032ABF1 /* create_exam_noraml.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A34E1E5167430032ABF1 /* create_exam_noraml.png */; };
+		BFC9A3581E5167430032ABF1 /* create_exam_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A34F1E5167430032ABF1 /* create_exam_pressed.png */; };
+		BFC9A3591E5167430032ABF1 /* test_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A3501E5167430032ABF1 /* test_icon.png */; };
+		BFC9A35A1E5167430032ABF1 /* delete_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A3511E5167430032ABF1 /* delete_pressed.png */; };
+		BFC9A35B1E5167430032ABF1 /* delete_normal.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A3521E5167430032ABF1 /* delete_normal.png */; };
+		BFC9A35C1E5167430032ABF1 /* fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A3531E5167430032ABF1 /* fresh.png */; };
+		BFC9A35D1E5167430032ABF1 /* error.png in Resources */ = {isa = PBXBuildFile; fileRef = BFC9A3541E5167430032ABF1 /* error.png */; };
 		BFFC76CF1E4DF550004128E1 /* AddProblemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFFC76CD1E4DF550004128E1 /* AddProblemViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +50,15 @@
 		BFB807A91E4D954E00F48235 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BFB807AC1E4D954E00F48235 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFB807AE1E4D954E00F48235 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BFC9A34C1E5167430032ABF1 /* new_problem_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_problem_normal.png; sourceTree = "<group>"; };
+		BFC9A34D1E5167430032ABF1 /* new_problem_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_problem_pressed.png; sourceTree = "<group>"; };
+		BFC9A34E1E5167430032ABF1 /* create_exam_noraml.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_exam_noraml.png; sourceTree = "<group>"; };
+		BFC9A34F1E5167430032ABF1 /* create_exam_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = create_exam_pressed.png; sourceTree = "<group>"; };
+		BFC9A3501E5167430032ABF1 /* test_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_icon.png; sourceTree = "<group>"; };
+		BFC9A3511E5167430032ABF1 /* delete_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_pressed.png; sourceTree = "<group>"; };
+		BFC9A3521E5167430032ABF1 /* delete_normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_normal.png; sourceTree = "<group>"; };
+		BFC9A3531E5167430032ABF1 /* fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fresh.png; sourceTree = "<group>"; };
+		BFC9A3541E5167430032ABF1 /* error.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = error.png; sourceTree = "<group>"; };
 		BFFC76CC1E4DF550004128E1 /* AddProblemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProblemViewController.h; sourceTree = "<group>"; };
 		BFFC76CD1E4DF550004128E1 /* AddProblemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProblemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -70,6 +88,7 @@
 		BFB807911E4D954E00F48235 = {
 			isa = PBXGroup;
 			children = (
+				BFC9A34B1E5167430032ABF1 /* Resources */,
 				BF8A70811E50CA2800721B34 /* Model */,
 				BFB8079C1E4D954E00F48235 /* CompanyTrainingExam */,
 				BFB8079B1E4D954E00F48235 /* Products */,
@@ -113,6 +132,23 @@
 				BFB807A11E4D954E00F48235 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BFC9A34B1E5167430032ABF1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BFC9A34C1E5167430032ABF1 /* new_problem_normal.png */,
+				BFC9A34D1E5167430032ABF1 /* new_problem_pressed.png */,
+				BFC9A34E1E5167430032ABF1 /* create_exam_noraml.png */,
+				BFC9A34F1E5167430032ABF1 /* create_exam_pressed.png */,
+				BFC9A3501E5167430032ABF1 /* test_icon.png */,
+				BFC9A3511E5167430032ABF1 /* delete_pressed.png */,
+				BFC9A3521E5167430032ABF1 /* delete_normal.png */,
+				BFC9A3531E5167430032ABF1 /* fresh.png */,
+				BFC9A3541E5167430032ABF1 /* error.png */,
+			);
+			name = Resources;
+			path = CompanyTrainingExam/Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,9 +208,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFC9A35D1E5167430032ABF1 /* error.png in Resources */,
+				BFC9A3551E5167430032ABF1 /* new_problem_normal.png in Resources */,
 				BFB807AA1E4D954E00F48235 /* Assets.xcassets in Resources */,
+				BFC9A35B1E5167430032ABF1 /* delete_normal.png in Resources */,
+				BFC9A3571E5167430032ABF1 /* create_exam_noraml.png in Resources */,
+				BFC9A35A1E5167430032ABF1 /* delete_pressed.png in Resources */,
 				BF8A707A1E50601A00721B34 /* ProblemInfo.plist in Resources */,
 				BFB807AD1E4D954E00F48235 /* Main.storyboard in Resources */,
+				BFC9A3581E5167430032ABF1 /* create_exam_pressed.png in Resources */,
+				BFC9A3591E5167430032ABF1 /* test_icon.png in Resources */,
+				BFC9A35C1E5167430032ABF1 /* fresh.png in Resources */,
+				BFC9A3561E5167430032ABF1 /* new_problem_pressed.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
