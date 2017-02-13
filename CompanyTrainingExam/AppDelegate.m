@@ -15,10 +15,13 @@
 @end
 
 @implementation AppDelegate
+- (void)applicationWillFinishLaunching:(NSNotification *)notification {
+    
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-    [self openDB];
+    
 }
 /**
  *  打开数据库

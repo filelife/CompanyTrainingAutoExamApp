@@ -72,38 +72,47 @@
 
 - (void)formPaper {
     self.examContext = [NSString stringWithFormat:@"考卷:\n"];
+    NSString * answer = [NSString stringWithFormat:@"\n\n答案:\n"];
     NSInteger index = 1;
 //    for(ProblemEntity * entity in self.problemArray) {
 //        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
 //        self.examContext = [self.examContext stringByAppendingString:problem];
 //    }
     self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
+    
+    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
     for(ProblemEntity * entity in self.choiceArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
-        index++;
-    }
-    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"二、判断题:\n"]];
-    for(ProblemEntity * entity in self.judgmentArray) {
-        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
-        self.examContext = [self.examContext stringByAppendingString:problem];
-        index++;
-    }
-    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"三、填空题:\n"]];
-    for(ProblemEntity * entity in self.fillInTheBlanksArray) {
-        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
-        self.examContext = [self.examContext stringByAppendingString:problem];
-        index++;
-    }
-    
-    NSString * answer = [NSString stringWithFormat:@"\n\n答案:\n"];
-    index = 1;
-    for(ProblemEntity * entity in self.problemArray) {
         NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
         answer = [answer stringByAppendingString:answerTemp];
         index++;
-        
     }
+    
+    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"二、填空题:\n"]];
+    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n二、填空题:\n"]];
+    for(ProblemEntity * entity in self.fillInTheBlanksArray) {
+        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
+        self.examContext = [self.examContext stringByAppendingString:problem];
+        NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
+        answer = [answer stringByAppendingString:answerTemp];
+        index++;
+    }
+    
+    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"三、判断题:\n"]];
+    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、判断题:\n"]];
+    for(ProblemEntity * entity in self.judgmentArray) {
+        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
+        self.examContext = [self.examContext stringByAppendingString:problem];
+        NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
+        answer = [answer stringByAppendingString:answerTemp];
+        index++;
+    }
+    
+    
+    
+    index = 1;
+    
     self.examContext = [self.examContext stringByAppendingString:answer];
 }
 
