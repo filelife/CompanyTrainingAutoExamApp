@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "ProblemEntity+CoreDataProperties.h"
+
+
 @interface ViewController() <NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate>
 @property (nonatomic, strong) NSString * textFieldValue;
 @property (nonatomic, strong) NSManagedObjectContext * context;
@@ -22,7 +24,7 @@
     _context = appdelegate.managedObjectContext;
     self.problemTableView.delegate = self;
     self.problemTableView.dataSource = self;
-    self.problemTableView.backgroundColor = [NSColor lightGrayColor];
+    self.problemTableView.backgroundColor = [NSColor whiteColor ];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(freshDataClicked:)
@@ -32,9 +34,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view setWantsLayer:YES];
+    [self.view.layer setBackgroundColor:[[NSColor whiteColor ] CGColor]];
+    
     [self allProblem];
     [self.problemTableView reloadData];
-    // Do any additional setup after loading the view.
+    
 }
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {

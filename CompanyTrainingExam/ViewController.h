@@ -10,6 +10,9 @@
 
 @interface ViewController : NSViewController
 @property (nonatomic, strong) IBOutlet NSTableView * problemTableView;
+@property (nonatomic, strong) IBOutlet NSButton * addProbelmButton;
+@property (nonatomic, strong) IBOutlet NSButton * addExamPaperButton;
+@property (nonatomic, strong) IBOutlet NSButton * deleteProblemButton;
 - (IBAction)freshDataClicked:(id)sender;
 - (IBAction)deleteData:(id)sender;
 - (IBAction)createExamPaper:(id)sender;
