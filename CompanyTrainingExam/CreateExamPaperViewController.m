@@ -65,8 +65,19 @@
 }
 
 - (IBAction)createExamPaper:(id)sender {
+    if(self.choiceTextField.stringValue.length == 0 ||
+       self.judgmentTextField.stringValue.length == 0 ||
+       self.fillInTheBlanksTextField.stringValue.length == 0 ||
+       self.choiceTextField.integerValue > self.choiceNumLab.integerValue ||
+       self.judgmentTextField.integerValue > self.judgmentNumLab.integerValue ||
+       self.fillInTheBlanksTextField.integerValue > self.judgmentNumLab.integerValue) {
+        
+        [self warningAlert];
+
+    } else {
+        [self showAlert];
+    }
     
-    [self showAlert];
     
 }
 
@@ -159,4 +170,29 @@
         }
     }];
 }
+
+
+- (void)warningAlert {
+    NSAlert *alert = [[NSAlert alloc]init];
+    
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    
+    [alert addButtonWithTitle:@"好的"];
+    
+    
+    alert.messageText = @"出题量设置错误";
+    
+    alert.informativeText = @"超出题库容量或填写异常。";
+    
+    [alert setAlertStyle:NSAlertStyleWarning];
+    
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
+}
+
 @end

@@ -101,7 +101,7 @@
 }
 
 - (IBAction)deleteData:(id)sender {
-    [self showAlert];
+    [self showDeleteAlert];
 }
 
 - (void)deleteAllData {
@@ -151,13 +151,13 @@
     
 }
 
-- (void)showAlert {
+
+- (void)showDeleteAlert {
     NSAlert *alert = [[NSAlert alloc]init];
-    //可以设置产品的icon
-    alert.icon = [NSImage imageNamed:@"test_icon.png"];
     //添加两个按钮吧
     [alert addButtonWithTitle:@"确定"];
     [alert addButtonWithTitle:@"取消"];
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
     //正文
     alert.messageText = @"删除";
     //描述文字
