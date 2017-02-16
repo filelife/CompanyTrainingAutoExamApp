@@ -81,7 +81,21 @@
     
 }
 
+- (void)randomProblem {
+    NSMutableArray * choiceRandomArray = [NSMutableArray array];
+    for(int i = 0; i < self.choiceTextField.integerValue ; i++) {
+        ProblemEntity * entity;
+        UInt32 ucount = (UInt32)self.choiceArray.count;
+        NSInteger randomNum = arc4random_uniform(ucount);
+        entity = [self.choiceArray objectAtIndex:randomNum];
+        [choiceRandomArray addObject:entity];
+        NSLog(@"\nProblem%@\n",entity.problem);
+    }
+}
+
+
 - (void)formPaper {
+    [self randomProblem];
     self.examContext = [NSString stringWithFormat:@"考卷:\n"];
     NSString * answer = [NSString stringWithFormat:@"\n\n答案:\n"];
     NSInteger index = 1;
