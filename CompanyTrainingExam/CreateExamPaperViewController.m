@@ -70,8 +70,7 @@
        self.fillInTheBlanksTextField.stringValue.length == 0 ||
        self.choiceTextField.integerValue > self.choiceNumLab.integerValue ||
        self.judgmentTextField.integerValue > self.judgmentNumLab.integerValue ||
-       self.fillInTheBlanksTextField.integerValue > self.judgmentNumLab.integerValue) {
-        
+       self.fillInTheBlanksTextField.integerValue > self.fillInTheBlanksNumLab.integerValue) {
         [self warningAlert];
 
     } else {
@@ -117,16 +116,21 @@
     self.examContext = [NSString stringWithFormat:@"考卷:\n"];
     NSString * answer = [NSString stringWithFormat:@"\n\n答案:\n"];
     NSInteger index = 1;
+    NSInteger section = 0;
     NSMutableArray * choiceRandomArray = [self getProblemRandomArrayWithNeedNum:self.choiceTextField.integerValue
                                                                           array:self.choiceArray];
-    NSMutableArray * fillInBlanksArray = [self getProblemRandomArrayWithNeedNum:self.fillInTheBlanksTextField.integerValue
+    NSMutableArray * fillInBlanksRandomArray = [self getProblemRandomArrayWithNeedNum:self.fillInTheBlanksTextField.integerValue
                                                                           array:self.fillInTheBlanksArray];
     NSMutableArray * judgeRandomArray = [self getProblemRandomArrayWithNeedNum:self.judgmentTextField.integerValue
                                                                          array:self.judgmentArray];
     
-    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
     
-    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
+    if(choiceRandomArray.count > 0) {
+        section ++;
+        self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、选择题:\n",[self getSectionChar:section]]];
+        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"%@、选择题:\n",[self getSectionChar:section]]];
+    }
+    
     for(ProblemEntity * entity in choiceRandomArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
@@ -134,19 +138,25 @@
         answer = [answer stringByAppendingString:answerTemp];
         index++;
     }
+    if(fillInBlanksRandomArray.count) {
+        section++;
+        self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、填空题:\n",[self getSectionChar:section]]];
+        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"%@、填空题:\n",[self getSectionChar:section]]];
+    }
     
-    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"二、填空题:\n"]];
-    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n二、填空题:\n"]];
-    for(ProblemEntity * entity in fillInBlanksArray) {
+    for(ProblemEntity * entity in fillInBlanksRandomArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
         NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
         answer = [answer stringByAppendingString:answerTemp];
         index++;
     }
+    if(judgeRandomArray.count) {
+        section++;
+        self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、判断题:\n",[self getSectionChar:section]]];
+        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、判断题:\n"]];
+    }
     
-    self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"三、判断题:\n"]];
-    answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、判断题:\n"]];
     for(ProblemEntity * entity in judgeRandomArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
@@ -209,18 +219,11 @@
 
 - (void)warningAlert {
     NSAlert *alert = [[NSAlert alloc]init];
-    
     alert.icon = [NSImage imageNamed:@"test_icon.png"];
-    
     [alert addButtonWithTitle:@"好的"];
-    
-    
     alert.messageText = @"出题量设置错误";
-    
     alert.informativeText = @"超出题库容量或填写异常。";
-    
     [alert setAlertStyle:NSAlertStyleWarning];
-    
     [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSAlertFirstButtonReturn ) {
             
@@ -228,6 +231,25 @@
             
         }
     }];
+}
+
+- (NSString *)getSectionChar:(NSInteger)num {
+    switch (num) {
+        case 1:
+            return @"一";
+            break;
+        case 2:
+            return @"二";
+        case 3:
+            return @"三";
+        case 4:
+            return @"四";
+        case 5:
+            return @"五";
+        default:
+            return @"";
+    
+    }
 }
 
 @end
