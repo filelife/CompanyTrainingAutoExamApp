@@ -852,6 +852,8 @@
                                 <buttonCell key="cell" type="push" title="新增题目" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bzT-3f-lGa" userLabel="New">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">n</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <segue destination="y9e-lV-5PH" kind="show" id="9Rh-ac-Te9"/>
@@ -874,6 +876,8 @@
                                 <buttonCell key="cell" type="push" title="创建试卷" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="F3k-Hb-ZW5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">N</string>
+                                    <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="createExamPaper:" target="XfG-lQ-9wD" id="k3A-yI-VTg"/>
@@ -925,6 +929,8 @@
                                 <buttonCell key="cell" type="push" title="添加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dHB-Rq-lcT">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">n</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="buttonClicked:" target="Sh9-gv-RUc" id="76f-Cq-pw2"/>

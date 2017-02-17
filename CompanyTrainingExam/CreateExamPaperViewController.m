@@ -81,32 +81,53 @@
     
 }
 
-- (void)randomProblem {
-    NSMutableArray * choiceRandomArray = [NSMutableArray array];
-    for(int i = 0; i < self.choiceTextField.integerValue ; i++) {
-        ProblemEntity * entity;
-        UInt32 ucount = (UInt32)self.choiceArray.count;
-        NSInteger randomNum = arc4random_uniform(ucount);
-        entity = [self.choiceArray objectAtIndex:randomNum];
-        [choiceRandomArray addObject:entity];
-        NSLog(@"\nProblem%@\n",entity.problem);
+
+- (NSMutableArray *)getProblemRandomArrayWithNeedNum:(NSInteger)needNum array:(NSArray*)problemArray {
+    if(needNum > problemArray.count) {
+        NSLog(@"[getProblemRandomArrayWithNeedNum]:抽取范围大于数组容量\n");
+        return nil;
     }
+    NSMutableArray * randomArray = [NSMutableArray array];
+    for(int i = 0; i < needNum ; ) {
+        ProblemEntity * entity;
+        UInt32 ucount = (UInt32)problemArray.count;
+        NSInteger randomNum = arc4random_uniform(ucount);
+        entity = [problemArray objectAtIndex:randomNum];
+        if(![self isExistInArray:entity array:randomArray]) {
+            [randomArray addObject:entity];
+            i++;
+        }
+        
+    }
+    return randomArray;
+}
+
+- (BOOL)isExistInArray:(ProblemEntity *)entity array:(NSArray<ProblemEntity *> *)array{
+    for(ProblemEntity * temp in array) {
+        if(temp.problemid == entity.problemid) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 
 - (void)formPaper {
-    [self randomProblem];
+    
     self.examContext = [NSString stringWithFormat:@"考卷:\n"];
     NSString * answer = [NSString stringWithFormat:@"\n\n答案:\n"];
     NSInteger index = 1;
-//    for(ProblemEntity * entity in self.problemArray) {
-//        NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
-//        self.examContext = [self.examContext stringByAppendingString:problem];
-//    }
+    NSMutableArray * choiceRandomArray = [self getProblemRandomArrayWithNeedNum:self.choiceTextField.integerValue
+                                                                          array:self.choiceArray];
+    NSMutableArray * fillInBlanksArray = [self getProblemRandomArrayWithNeedNum:self.fillInTheBlanksTextField.integerValue
+                                                                          array:self.fillInTheBlanksArray];
+    NSMutableArray * judgeRandomArray = [self getProblemRandomArrayWithNeedNum:self.judgmentTextField.integerValue
+                                                                         array:self.judgmentArray];
+    
     self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
     
     answer = [answer stringByAppendingString:[NSString stringWithFormat:@"一、选择题:\n"]];
-    for(ProblemEntity * entity in self.choiceArray) {
+    for(ProblemEntity * entity in choiceRandomArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
         NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
@@ -116,7 +137,7 @@
     
     self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"二、填空题:\n"]];
     answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n二、填空题:\n"]];
-    for(ProblemEntity * entity in self.fillInTheBlanksArray) {
+    for(ProblemEntity * entity in fillInBlanksArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
         NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];
@@ -126,7 +147,7 @@
     
     self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"三、判断题:\n"]];
     answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、判断题:\n"]];
-    for(ProblemEntity * entity in self.judgmentArray) {
+    for(ProblemEntity * entity in judgeRandomArray) {
         NSString * problem = [NSString stringWithFormat:@"%ld. %@\n\n",index,entity.problem];
         self.examContext = [self.examContext stringByAppendingString:problem];
         NSString * answerTemp =[NSString stringWithFormat:@"%ld.%@\t",index,entity.answer];

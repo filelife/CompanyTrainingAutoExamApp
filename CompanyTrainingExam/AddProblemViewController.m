@@ -43,6 +43,11 @@
  新增个人记录
  */
 - (void)addProblem {
+    if(self.textField.stringValue.length == 0 ||
+       self.answerField.stringValue.length == 0) {
+        [self warningAlert];
+        return;
+    }
     /**
      回顾SQL新增记录的过程
      
@@ -68,6 +73,9 @@
         NSLog(@"新增成功");
         [[NSNotificationCenter defaultCenter]
          postNotificationName:@"FreshData" object:self];
+        self.textField.stringValue = @"";
+        self.answerField.stringValue = @"";
+        [self.textField becomeFirstResponder];
     } else {
         NSLog(@"新增失败");
     }
@@ -83,6 +91,29 @@
     [data writeToFile:plistPath atomically:YES];
     return @(mMaxId);
     
+}
+
+- (void)warningAlert {
+    NSAlert *alert = [[NSAlert alloc]init];
+    
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    
+    [alert addButtonWithTitle:@"确认"];
+    
+    
+    alert.messageText = @"提示";
+    
+    alert.informativeText = @"未输入问题或者答案，请输入后再提交。";
+    
+    [alert setAlertStyle:NSAlertStyleWarning];
+    
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
 }
 
 @end

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString * textFieldValue;
 @property (nonatomic, strong) NSManagedObjectContext * context;
 @property (nonatomic, strong) NSArray * problemArray;
+@property (nonatomic, strong) ProblemEntity * currentSelectProblem;
 @end
 @implementation ViewController
 
@@ -26,7 +27,7 @@
     self.problemTableView.delegate = self;
     self.problemTableView.dataSource = self;
     self.problemTableView.backgroundColor = [NSColor whiteColor ];
-    
+    self.problemTableView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(freshDataClicked:)
                                                  name:@"FreshData"
@@ -63,13 +64,24 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-    return NO;
+    self.currentSelectProblem = [self.problemArray objectAtIndex:row];
+    for(int i = 0; i < self.problemArray.count;i++) {
+        NSTableRowView * tableRow = [self.problemTableView rowViewAtRow:i makeIfNecessary:YES];
+        if(row == i) {
+            tableRow.backgroundColor = [NSColor lightGrayColor];
+        } else {
+            tableRow.backgroundColor = [NSColor whiteColor];
+        }
+    }
+    
+    return YES;
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
     NSTextField *view   = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 1, 100, 28)];
     view.bordered       = NO;
     view.editable       = NO;
+    view.backgroundColor = [NSColor clearColor];
     ProblemEntity *p = [self.problemArray objectAtIndex:row];
     // 1.1.判断是哪一列
     if ([tableColumn.identifier isEqualToString:@"id"]) {
@@ -101,7 +113,12 @@
 }
 
 - (IBAction)deleteData:(id)sender {
-    [self showDeleteAlert];
+    if(self.currentSelectProblem) {
+        [self showDeleteAlert];
+    } else {
+        [self noSelectProblem];
+    }
+    
 }
 
 - (void)deleteAllData {
@@ -113,9 +130,10 @@
     NSArray *datas = [_context executeFetchRequest:request error:&error];
     if (!error && datas && [datas count])
     {
-        for (NSManagedObject *obj in datas)
-        {
-            [_context deleteObject:obj];
+        for (ProblemEntity *obj in datas) {
+            if(obj.problemid == self.currentSelectProblem.problemid) {
+                [_context deleteObject:obj];
+            }
         }
         if (![_context save:&error])
         {
@@ -151,6 +169,26 @@
     
 }
 
+- (void)noSelectProblem {
+    NSAlert *alert = [[NSAlert alloc]init];
+    //添加两个按钮吧
+    [alert addButtonWithTitle:@"确定"];
+    
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    //正文
+    alert.messageText = @"删除";
+    //描述文字
+    alert.informativeText = @"还未选定要删除的题目。";
+    //弹窗类型 默认类型 NSAlertStyleWarning
+    [alert setAlertStyle:NSAlertStyleWarning];
+    //回调Block
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
+}
 
 - (void)showDeleteAlert {
     NSAlert *alert = [[NSAlert alloc]init];
@@ -161,7 +199,7 @@
     //正文
     alert.messageText = @"删除";
     //描述文字
-    alert.informativeText = @"确定删除所有题目？";
+    alert.informativeText = @"确定删除所选题目？";
     //弹窗类型 默认类型 NSAlertStyleWarning
     [alert setAlertStyle:NSAlertStyleWarning];
     //回调Block
@@ -170,6 +208,7 @@
             [self deleteAllData];
             [self allProblem];
             [self.problemTableView reloadData];
+            self.currentSelectProblem = nil;
         }else if (returnCode == NSAlertSecondButtonReturn){
             
         }
