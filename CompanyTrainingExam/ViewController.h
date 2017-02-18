@@ -13,8 +13,13 @@
 @property (nonatomic, strong) IBOutlet NSButton * addProbelmButton;
 @property (nonatomic, strong) IBOutlet NSButton * addExamPaperButton;
 @property (nonatomic, strong) IBOutlet NSButton * deleteProblemButton;
+@property (nonatomic, strong) IBOutlet NSTextField * choiceCountLab;
+@property (nonatomic, strong) IBOutlet NSTextField * fillInblanksCountLab;
+@property (nonatomic, strong) IBOutlet NSTextField * judgeCountLab;
+@property (nonatomic, strong) IBOutlet NSSearchField * searchField;
 - (IBAction)freshDataClicked:(id)sender;
 - (IBAction)deleteData:(id)sender;
 - (IBAction)createExamPaper:(id)sender;
+- (IBAction)searchAnswer:(id)sender;
 @end
 

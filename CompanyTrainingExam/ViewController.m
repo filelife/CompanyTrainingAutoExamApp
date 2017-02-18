@@ -9,13 +9,16 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "ProblemEntity+CoreDataProperties.h"
-
-
+#define HEX_RGBA(s,a) [NSColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s &0xFF00) >>8))/255.0 blue:((s & 0xFF))/255.0 alpha:a]
+#define BackgroundColor HEX_RGBA(0xffb3a7,0.1)
+#define SelectColor HEX_RGBA(0xffc20e,0.8)
 @interface ViewController() <NSTextFieldDelegate, NSTableViewDataSource, NSTableViewDelegate>
 @property (nonatomic, strong) NSString * textFieldValue;
 @property (nonatomic, strong) NSManagedObjectContext * context;
 @property (nonatomic, strong) NSArray * problemArray;
+@property (nonatomic, strong) NSMutableArray * searchResArray;
 @property (nonatomic, strong) ProblemEntity * currentSelectProblem;
+@property (nonatomic, assign) BOOL isInSearch;
 @end
 @implementation ViewController
 
@@ -32,14 +35,14 @@
                                              selector:@selector(freshDataClicked:)
                                                  name:@"FreshData"
                                                object:nil];
+    _isInSearch = NO;
+    self.searchResArray = [NSMutableArray array];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setWantsLayer:YES];
-    [self.view.layer setBackgroundColor:[[NSColor whiteColor ] CGColor]];
-    
-    
+    [self.view.layer setBackgroundColor:[BackgroundColor CGColor]];
     
 }
 
@@ -53,8 +56,61 @@
     
 }
 
+- (IBAction)searchAnswer:(id)sender {
+    NSSearchField * searchField = (NSSearchField *)sender;
+    NSLog(@"search answer: %@", [searchField stringValue]);
+    if([searchField stringValue].length == 0) {
+        self.isInSearch = NO;
+        [self.problemTableView reloadData];
+    } else {
+        self.isInSearch = YES;
+        [self searchProblemWithString:[searchField stringValue]];
+        [self.problemTableView reloadData];
+    }
+    
+}
+
+- (void)searchProblemWithString:(NSString *)string {
+    self.searchResArray = nil;
+    self.searchResArray = [NSMutableArray array];
+    for(ProblemEntity * entity in self.problemArray) {
+        if(string) {
+            if([entity.problem rangeOfString:string].location != NSNotFound) {
+                [self.searchResArray addObject:entity];
+            } else if([entity.answer rangeOfString:string].location != NSNotFound) {
+                [self.searchResArray addObject:entity];
+            } else if([entity.type rangeOfString:string].location != NSNotFound) {
+                [self.searchResArray addObject:entity];
+            } else if(entity.problemid.integerValue == [string integerValue]) {
+                [self.searchResArray addObject:entity];
+            }
+        }
+    }
+}
+
+- (void)count {
+    NSInteger choiceCount = 0,fillInBlanksCount = 0, judgeCount = 0;
+    
+    for(ProblemEntity * entity in self.problemArray) {
+        if([entity.type isEqualToString:@"选择题"]) {
+            choiceCount++;
+        } else if([entity.type isEqualToString:@"填空题"]) {
+            fillInBlanksCount++;
+        } else if([entity.type isEqualToString:@"判断题"]) {
+            judgeCount++;
+        }
+    }
+    self.choiceCountLab.stringValue = [NSString stringWithFormat:@"%ld 道",choiceCount];
+    self.fillInblanksCountLab.stringValue = [NSString stringWithFormat:@"%ld 道",fillInBlanksCount];
+    self.judgeCountLab.stringValue = [NSString stringWithFormat:@"%ld 道",judgeCount];
+}
+
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-    return self.problemArray.count;
+    if(_isInSearch == NO) {
+        return self.problemArray.count;
+    } else {
+        return self.searchResArray.count;
+    }
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
@@ -64,16 +120,24 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-    self.currentSelectProblem = [self.problemArray objectAtIndex:row];
-    for(int i = 0; i < self.problemArray.count;i++) {
-        NSTableRowView * tableRow = [self.problemTableView rowViewAtRow:i makeIfNecessary:YES];
-        if(row == i) {
-            tableRow.backgroundColor = [NSColor lightGrayColor];
-        } else {
-            tableRow.backgroundColor = [NSColor whiteColor];
-        }
+    if(_isInSearch == NO) {
+        self.currentSelectProblem = [self.problemArray objectAtIndex:row];
+    } else {
+        self.currentSelectProblem = [self.searchResArray objectAtIndex:row];
     }
     
+    for(int i = 0; i < self.problemArray.count;i++) {
+        NSTableRowView * tableRow = [self.problemTableView rowViewAtRow:i makeIfNecessary:YES];
+        if(i == row) {
+            tableRow.layer.masksToBounds = YES;
+            tableRow.layer.borderWidth = 3;
+            tableRow.layer.borderColor = SelectColor.CGColor;
+        } else {
+            tableRow.layer.masksToBounds = YES;
+            tableRow.layer.borderWidth = 0;
+            
+        }
+    }
     return YES;
 }
 
@@ -82,7 +146,13 @@
     view.bordered       = NO;
     view.editable       = NO;
     view.backgroundColor = [NSColor clearColor];
-    ProblemEntity *p = [self.problemArray objectAtIndex:row];
+    ProblemEntity *p ;
+    if(!_isInSearch) {
+        p = [self.problemArray objectAtIndex:row];
+    } else {
+        p = [self.searchResArray objectAtIndex:row];
+    }
+    
     // 1.1.判断是哪一列
     if ([tableColumn.identifier isEqualToString:@"id"]) {
         view.stringValue    = [NSString stringWithFormat:@"%ld",p.problemid.integerValue];
@@ -93,6 +163,17 @@
     }else if([tableColumn.identifier isEqualToString:@"problem"] ){
         view.stringValue    = [NSString stringWithFormat:@"%@",p.problem];
     }
+    
+    NSTableRowView * tableRow = [tableView rowViewAtRow:row makeIfNecessary:YES];
+    
+    NSInteger res = row % 2;
+    NSLog(@"row:%ld res:%ld\n",row ,res);
+    if(res == 1) {
+        tableRow.backgroundColor = BackgroundColor;
+    } else {
+        tableRow.backgroundColor = [NSColor clearColor];
+    }
+    
     return view;
 }
 
@@ -140,10 +221,10 @@
             NSLog(@"error:%@",error);
         }
     }
-    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProblemInfo" ofType:@"plist"];
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    [data setValue:@(0) forKey:@"lastMaxId"];
-    [data writeToFile:plistPath atomically:YES];
+//    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProblemInfo" ofType:@"plist"];
+//    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+//    [data setValue:@(0) forKey:@"lastMaxId"];
+//    [data writeToFile:plistPath atomically:YES];
 }
 
 - (void)allProblem {
@@ -166,7 +247,7 @@
        
         
     }
-    
+    [self count];
 }
 
 - (void)noSelectProblem {
@@ -188,6 +269,7 @@
             
         }
     }];
+    
 }
 
 - (void)showDeleteAlert {
