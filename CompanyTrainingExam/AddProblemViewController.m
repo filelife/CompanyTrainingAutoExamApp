@@ -24,6 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+    self.answerField.nextResponder = self.okButton;
 }
 
 - (void)viewWillDisappear {
@@ -33,10 +34,6 @@
     [self addProblem];
 }
 
-- (IBAction)cancelClicked:(id)sender {
-    
-    [self removeFromParentViewController];
-}
 
 
 /**

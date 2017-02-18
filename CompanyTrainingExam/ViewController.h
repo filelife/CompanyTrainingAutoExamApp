@@ -21,5 +21,6 @@
 - (IBAction)deleteData:(id)sender;
 - (IBAction)createExamPaper:(id)sender;
 - (IBAction)searchAnswer:(id)sender;
+- (IBAction)backUp:(id)sender;
 @end
 

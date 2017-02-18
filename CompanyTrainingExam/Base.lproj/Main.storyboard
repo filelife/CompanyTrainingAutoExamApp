@@ -958,6 +958,17 @@
                                     <action selector="searchAnswer:" target="XfG-lQ-9wD" id="HHQ-29-ntd"/>
                                 </connections>
                             </searchField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6u0-gy-nUb">
+                                <rect key="frame" x="360" y="25" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="备份" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SB5-GS-GF8">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="backUp:" target="XfG-lQ-9wD" id="uuM-cu-iTG"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -1078,6 +1089,7 @@
                     </view>
                     <connections>
                         <outlet property="answerField" destination="uNk-ym-fqo" id="aMc-rw-iMD"/>
+                        <outlet property="okButton" destination="pdH-Zf-C1q" id="FMW-yS-ZzV"/>
                         <outlet property="tagField" destination="1gz-7z-9va" id="tPg-jc-Gz7"/>
                         <outlet property="textField" destination="C3G-I7-ga0" id="P3T-vF-FCp"/>
                     </connections>

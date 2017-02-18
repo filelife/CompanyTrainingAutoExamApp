@@ -12,7 +12,8 @@
 @property (nonatomic, strong) IBOutlet NSTextField * textField;
 @property (nonatomic, strong) IBOutlet NSTextField * answerField;
 @property (nonatomic, strong) IBOutlet NSPopUpButton * tagField;
+@property (nonatomic, strong) IBOutlet NSButton * okButton;
 - (IBAction)buttonClicked:(id)sender;
-- (IBAction)cancelClicked:(id)sender;
-//- (IBAction)dismissController:(id)sender;s
+
+
 @end

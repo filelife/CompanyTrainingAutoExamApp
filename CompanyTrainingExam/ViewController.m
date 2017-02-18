@@ -56,6 +56,36 @@
     
 }
 
+- (IBAction)backUp:(id)sender {
+    NSString *fileName = @"backup.plist";
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *path = [NSString stringWithFormat:@"%@/%@",[fm currentDirectoryPath],fileName];
+    
+    //判断文件是否存在 不存在就结束程序
+    if([fm fileExistsAtPath:path]==NO){
+        NSLog(@"文件不存在");
+        [fm createFileAtPath:path contents:nil attributes:nil];
+        
+    }
+    
+    
+    NSMutableArray * dataArray = [NSMutableArray array];
+    
+    for(ProblemEntity * entity in self.problemArray) {
+        NSDictionary * dic = @{
+                               @"probemId":entity.problemid,
+                               @"problem":entity.problem,
+                               @"answer":entity.answer,
+                               @"type":entity.type
+                               };
+        [dataArray addObject:dic];
+ 
+        
+    }
+    [dataArray writeToFile:path atomically:YES];
+    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[fm currentDirectoryPath]];
+}
+
 - (IBAction)searchAnswer:(id)sender {
     NSSearchField * searchField = (NSSearchField *)sender;
     NSLog(@"search answer: %@", [searchField stringValue]);
