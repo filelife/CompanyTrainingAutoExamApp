@@ -128,7 +128,7 @@
     if(choiceRandomArray.count > 0) {
         section ++;
         self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、选择题:\n",[self getSectionChar:section]]];
-        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"%@、选择题:\n",[self getSectionChar:section]]];
+        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n%@、选择题:\n",[self getSectionChar:section]]];
     }
     
     for(ProblemEntity * entity in choiceRandomArray) {
@@ -141,7 +141,7 @@
     if(fillInBlanksRandomArray.count) {
         section++;
         self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、填空题:\n",[self getSectionChar:section]]];
-        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"%@、填空题:\n",[self getSectionChar:section]]];
+        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n%@、填空题:\n",[self getSectionChar:section]]];
     }
     
     for(ProblemEntity * entity in fillInBlanksRandomArray) {
@@ -164,9 +164,6 @@
         answer = [answer stringByAppendingString:answerTemp];
         index++;
     }
-    
-    
-    
     index = 1;
     
     self.examContext = [self.examContext stringByAppendingString:answer];

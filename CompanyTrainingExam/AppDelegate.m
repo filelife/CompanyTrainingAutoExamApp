@@ -5,24 +5,30 @@
 //  Created by Gejiaxin on 17/2/10.
 //  Copyright © 2017年 VincentJac. All rights reserved.
 //
-
+#import "ProblemEntity+CoreDataClass.h"
 #import "AppDelegate.h"
 #import <CoreData/CoreData.h>
 @interface AppDelegate ()
 
-- (IBAction)saveAction:(id)sender;
+
 
 @end
 
 @implementation AppDelegate
+
+
+
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
     
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+
     
 }
+
+
 /**
  *  打开数据库
  */

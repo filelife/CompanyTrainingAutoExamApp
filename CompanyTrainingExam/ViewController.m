@@ -35,6 +35,15 @@
                                              selector:@selector(freshDataClicked:)
                                                  name:@"FreshData"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(showDeleteAllDataAlert)
+                                                 name:@"DeleteData"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(searchFieldBecomeFristResponse)
+                                                 name:@"SearchData"
+                                               object:nil];
+
     _isInSearch = NO;
     self.searchResArray = [NSMutableArray array];
 }
@@ -55,8 +64,80 @@
     }
     
 }
+#pragma mark action
+
+- (void)setRepresentedObject:(id)representedObject {
+    [super setRepresentedObject:representedObject];
+}
+
+- (IBAction)searchFieldBecomeFristResponse:(id)sender {
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"SearchData" object:self];
+}
+
+- (void)searchFieldBecomeFristResponse {
+    
+    self.searchField.stringValue = @" ";
+    [self.searchField becomeFirstResponder];
+    
+}
+
+- (IBAction)deleteAllData:(id)sender {
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"DeleteData" object:self];
+}
+
+
+
+- (IBAction)freshDataClicked:(id)sender {
+    self.searchField.stringValue = @"";
+    self.isInSearch = NO;
+    [self allProblem];
+    [self.problemTableView reloadData];
+}
+
+- (IBAction)deleteData:(id)sender {
+    if(self.currentSelectProblem) {
+        [self showDeleteAlert];
+    } else {
+        [self noSelectProblem];
+    }
+    
+}
 
 - (IBAction)backUp:(id)sender {
+    [self writeToBackFile];
+}
+
+
+- (IBAction)readBackUp:(id)sender {
+    [self openBackUpFilePath];
+}
+
+
+- (IBAction)searchAnswer:(id)sender {
+    NSSearchField * searchField = (NSSearchField *)sender;
+    [self updateSearchKeyWord:[searchField stringValue]];
+}
+
+#pragma mark Back up operation
+- (void)openBackUpFilePath {
+    NSOpenPanel * panel = [NSOpenPanel openPanel];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    [panel setDirectoryURL:[NSURL URLWithString:[fm currentDirectoryPath]]];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanChooseFiles:YES];
+    [panel setCanChooseDirectories:YES];
+    [panel setAllowedFileTypes:@[@"plist"]];
+    [panel setAllowsOtherFileTypes:YES];
+    if ([panel runModal] == NSModalResponseOK) {
+        NSString * string = [panel.URLs.firstObject path];
+        [self readPlistData:string];
+    }
+}
+
+- (void)writeToBackFile {
     NSString *fileName = @"backup.plist";
     NSFileManager *fm = [NSFileManager defaultManager];
     NSString *path = [NSString stringWithFormat:@"%@/%@",[fm currentDirectoryPath],fileName];
@@ -67,37 +148,58 @@
         [fm createFileAtPath:path contents:nil attributes:nil];
         
     }
-    
-    
     NSMutableArray * dataArray = [NSMutableArray array];
-    
     for(ProblemEntity * entity in self.problemArray) {
         NSDictionary * dic = @{
-                               @"probemId":entity.problemid,
+                               @"problemId":entity.problemid,
                                @"problem":entity.problem,
                                @"answer":entity.answer,
                                @"type":entity.type
                                };
         [dataArray addObject:dic];
- 
+        
         
     }
     [dataArray writeToFile:path atomically:YES];
     [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[fm currentDirectoryPath]];
 }
 
-- (IBAction)searchAnswer:(id)sender {
-    NSSearchField * searchField = (NSSearchField *)sender;
-    NSLog(@"search answer: %@", [searchField stringValue]);
-    if([searchField stringValue].length == 0) {
+
+- (void)readPlistData:(NSString *)path {
+    NSMutableArray *data = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    if(data) {
+        NSInteger choiceCount = 0;
+        NSInteger fillCount = 0;
+        NSInteger judgeCount = 0;
+        for(NSDictionary * dic in data) {
+            NSString * str_type = [dic objectForKey:@"type"];
+            if([str_type isEqualToString:@"选择题"]) {
+                choiceCount++;
+            } else if ([str_type isEqualToString:@"判断题"]) {
+                judgeCount++;
+            } else if ([str_type isEqualToString:@"填空题"]) {
+                fillCount++;
+            }
+        }
+        NSString *  str = [NSString stringWithFormat:@"备份题库包含选择题: %ld道,填空题: %ld道,判断题: %ld道。请选择数据恢复方式。",choiceCount,fillCount,judgeCount];
+        [self showIfReadBackUpAlert:str withData:data];
+    } else {
+        
+    }
+}
+
+
+#pragma mark Search Operation
+
+- (void)updateSearchKeyWord:(NSString *)keyword{
+    if(keyword.length == 0) {
         self.isInSearch = NO;
         [self.problemTableView reloadData];
     } else {
         self.isInSearch = YES;
-        [self searchProblemWithString:[searchField stringValue]];
+        [self searchProblemWithString:keyword];
         [self.problemTableView reloadData];
     }
-    
 }
 
 - (void)searchProblemWithString:(NSString *)string {
@@ -134,6 +236,8 @@
     self.fillInblanksCountLab.stringValue = [NSString stringWithFormat:@"%ld 道",fillInBlanksCount];
     self.judgeCountLab.stringValue = [NSString stringWithFormat:@"%ld 道",judgeCount];
 }
+
+#pragma mark - Tableview delegate
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     if(_isInSearch == NO) {
@@ -195,9 +299,7 @@
     }
     
     NSTableRowView * tableRow = [tableView rowViewAtRow:row makeIfNecessary:YES];
-    
     NSInteger res = row % 2;
-    NSLog(@"row:%ld res:%ld\n",row ,res);
     if(res == 1) {
         tableRow.backgroundColor = BackgroundColor;
     } else {
@@ -207,32 +309,9 @@
     return view;
 }
 
+#pragma mark - Data operation
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
-}
-
-- (IBAction)createExamPaper:(id)sender {
-    
-}
-
-- (IBAction)freshDataClicked:(id)sender {
-    [self allProblem];
-    [self.problemTableView reloadData];
-}
-
-- (IBAction)deleteData:(id)sender {
-    if(self.currentSelectProblem) {
-        [self showDeleteAlert];
-    } else {
-        [self noSelectProblem];
-    }
-    
-}
-
-- (void)deleteAllData {
+- (void)deleteData {
     NSEntityDescription *description = [NSEntityDescription entityForName:@"ProblemEntity" inManagedObjectContext:_context];
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setIncludesPropertyValues:NO];
@@ -251,10 +330,46 @@
             NSLog(@"error:%@",error);
         }
     }
-//    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProblemInfo" ofType:@"plist"];
-//    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-//    [data setValue:@(0) forKey:@"lastMaxId"];
-//    [data writeToFile:plistPath atomically:YES];
+
+}
+
+- (void)deleteAllData {
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"ProblemEntity" inManagedObjectContext:_context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setIncludesPropertyValues:NO];
+    [request setEntity:description];
+    NSError *error = nil;
+    NSArray *datas = [_context executeFetchRequest:request error:&error];
+    if (!error && datas && [datas count]) {
+        for (ProblemEntity *obj in datas) {
+            [_context deleteObject:obj];
+        }
+        if (![_context save:&error]) {
+            NSLog(@"error:%@",error);
+        }
+    }
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProblemInfo" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    [data setValue:@(0) forKey:@"lastMaxId"];
+    [data writeToFile:plistPath atomically:YES];
+
+}
+
+- (void)insertData:(NSDictionary *)dictionary {
+    ProblemEntity *p = [NSEntityDescription insertNewObjectForEntityForName:@"ProblemEntity" inManagedObjectContext:_context];
+    NSString * strProblem = [dictionary objectForKey:@"problem"];
+    NSNumber * numProblemId = [dictionary objectForKey:@"problemId"];
+    NSString * strAnswer = [dictionary objectForKey:@"answer"];
+    NSString * strType = [dictionary objectForKey:@"type"];
+    p.problem = strProblem;
+    p.problemid = numProblemId;
+    p.type = strType;
+    p.answer = strAnswer;
+    NSError * error;
+    [_context save:&error];
+    if(error) {
+        NSLog(@"Insert data Error");
+    }
 }
 
 - (void)allProblem {
@@ -280,6 +395,27 @@
     [self count];
 }
 
+#pragma mark - Alert
+- (void)showDeleteAllDataAlert {
+    NSAlert *alert = [[NSAlert alloc]init];
+
+    [alert addButtonWithTitle:@"确定"];
+    [alert addButtonWithTitle:@"取消"];
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    alert.messageText = @"删除";
+    alert.informativeText = @"确定删除所有题目？";
+    [alert setAlertStyle:NSAlertStyleWarning];
+    //回调Block
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            [self deleteAllData];
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
+}
+
+
 - (void)noSelectProblem {
     NSAlert *alert = [[NSAlert alloc]init];
     //添加两个按钮吧
@@ -302,6 +438,37 @@
     
 }
 
+- (void)showIfReadBackUpAlert:(NSString *)showString withData:(NSArray *)dataArray{
+    NSAlert *alert = [[NSAlert alloc]init];
+    [alert addButtonWithTitle:@"添加"];
+    [alert addButtonWithTitle:@"覆盖"];
+    [alert addButtonWithTitle:@"取消"];
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    alert.messageText = @"读取备份";
+    alert.informativeText = showString;
+    [alert setAlertStyle:NSAlertStyleWarning];
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            NSLog(@"添加");
+            for(NSDictionary * dic in dataArray) {
+                [self insertData:dic];
+            }
+        } else if (returnCode == NSAlertSecondButtonReturn){
+            NSLog(@"覆盖");
+            [self deleteAllData];
+            for(NSDictionary * dic in dataArray) {
+                [self insertData:dic];
+            }
+        } else if (returnCode == NSAlertThirdButtonReturn) {
+            NSLog(@"取消");
+        }
+    }];
+    [self allProblem];
+    [self.problemTableView reloadData];
+    self.currentSelectProblem = nil;
+
+}
+
 - (void)showDeleteAlert {
     NSAlert *alert = [[NSAlert alloc]init];
     //添加两个按钮吧
@@ -317,7 +484,7 @@
     //回调Block
     [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSAlertFirstButtonReturn ) {
-            [self deleteAllData];
+            [self deleteData];
             [self allProblem];
             [self.problemTableView reloadData];
             self.currentSelectProblem = nil;

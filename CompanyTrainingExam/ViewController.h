@@ -19,8 +19,10 @@
 @property (nonatomic, strong) IBOutlet NSSearchField * searchField;
 - (IBAction)freshDataClicked:(id)sender;
 - (IBAction)deleteData:(id)sender;
-- (IBAction)createExamPaper:(id)sender;
 - (IBAction)searchAnswer:(id)sender;
 - (IBAction)backUp:(id)sender;
+- (IBAction)readBackUp:(id)sender;
+- (IBAction)deleteAllData:(id)sender;
+- (IBAction)searchFieldBecomeFristResponse:(id)sender;
 @end
 
