@@ -43,7 +43,12 @@
                                              selector:@selector(searchFieldBecomeFristResponse)
                                                  name:@"SearchData"
                                                object:nil];
-
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(writeToBackFile)
+                                                 name:@"BackUpData"
+                                               object:nil];
+    
     _isInSearch = NO;
     self.searchResArray = [NSMutableArray array];
 }
@@ -106,7 +111,8 @@
 }
 
 - (IBAction)backUp:(id)sender {
-    [self writeToBackFile];
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"BackUpData" object:self];
 }
 
 
@@ -161,7 +167,7 @@
         
     }
     [dataArray writeToFile:path atomically:YES];
-    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[fm currentDirectoryPath]];
+//    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[fm currentDirectoryPath]];
 }
 
 

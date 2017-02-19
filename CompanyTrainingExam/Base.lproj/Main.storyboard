@@ -49,8 +49,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="文件" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="备份" id="9ct-Ml-M7C">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="备份" keyEquivalent="s" id="9ct-Ml-M7C">
                                             <connections>
                                                 <action selector="backUp:" target="Pe7-u6-eWO" id="lyr-e5-Rjp"/>
                                             </connections>
