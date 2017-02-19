@@ -23,7 +23,8 @@
 @property (nonatomic, strong) IBOutlet NSPopUpButton * tagField;
 @property (nonatomic, strong) IBOutlet NSButton * okButton;
 @property (nonatomic, strong) IBOutlet NSButton * editButton;
-
+@property (nonatomic, strong) IBOutlet NSView * editView;
+@property (nonatomic, strong) IBOutlet NSView * dataView;
 - (IBAction)freshDataClicked:(id)sender;
 - (IBAction)deleteData:(id)sender;
 - (IBAction)searchAnswer:(id)sender;

@@ -63,7 +63,7 @@
     [super viewDidLoad];
     [self.view setWantsLayer:YES];
     [self.view.layer setBackgroundColor:[BackgroundColor CGColor]];
-    
+//    self.editView.hidden = YES;
 }
 
 - (void)viewDidAppear {
