@@ -18,6 +18,7 @@
 @property (nonatomic, strong) NSArray * problemArray;
 @property (nonatomic, strong) NSMutableArray * searchResArray;
 @property (nonatomic, strong) ProblemEntity * currentSelectProblem;
+@property (nonatomic, strong) NSAlert *backUpAlert;
 @property (nonatomic, assign) BOOL isInSearch;
 @end
 @implementation ViewController
@@ -113,6 +114,7 @@
 - (IBAction)backUp:(id)sender {
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"BackUpData" object:self];
+    
 }
 
 
@@ -166,10 +168,33 @@
         
         
     }
-    [dataArray writeToFile:path atomically:YES];
+    BOOL res = [dataArray writeToFile:path atomically:YES];
+    if(res == YES) {
+        [self showSuccess];
+    }
 //    [[NSWorkspace sharedWorkspace] selectFile:nil inFileViewerRootedAtPath:[fm currentDirectoryPath]];
 }
 
+- (void)showSuccess {
+    
+//    self.backupSuccessField.stringValue = @"备份成功!!!!!";
+    if(!self.backUpAlert) {
+        self.backUpAlert = [[NSAlert alloc]init];
+    }
+    self.backUpAlert.icon = [NSImage imageNamed:@"test_icon.png"];
+    self.backUpAlert.messageText = @"备份成功";
+    self.backUpAlert.informativeText = @"备份文件将会保存在程序所在的目录下，备份文件在恢复数据时将会起到非常重要的作用，希望能够妥善处理，经常保存。";
+    [self.backUpAlert setAlertStyle:NSAlertStyleInformational];
+    //回调Block
+    [self.backUpAlert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+    }];
+    [self performSelector:@selector(dismissSuccess) withObject:nil afterDelay:1];
+}
+
+- (void)dismissSuccess {
+//    self.backUpAlert
+    [NSApp endSheet:[self.view window]];
+}
 
 - (void)readPlistData:(NSString *)path {
     NSMutableArray *data = [[NSMutableArray alloc] initWithContentsOfFile:path];

@@ -17,6 +17,7 @@
 @property (nonatomic, strong) IBOutlet NSTextField * fillInblanksCountLab;
 @property (nonatomic, strong) IBOutlet NSTextField * judgeCountLab;
 @property (nonatomic, strong) IBOutlet NSSearchField * searchField;
+@property (nonatomic, strong) IBOutlet NSTextField * backupSuccessField;
 - (IBAction)freshDataClicked:(id)sender;
 - (IBAction)deleteData:(id)sender;
 - (IBAction)searchAnswer:(id)sender;

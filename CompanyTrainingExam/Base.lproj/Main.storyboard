@@ -474,11 +474,21 @@ DQ
                                     <action selector="freshDataClicked:" target="XfG-lQ-9wD" id="MQp-eM-2e6"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iq1-2Y-hU4">
+                                <rect key="frame" x="683" y="420" width="58" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="Yig-MF-pVV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addExamPaperButton" destination="ED3-Xe-j20" id="nUQ-Q8-w4p"/>
                         <outlet property="addProbelmButton" destination="XDa-jy-q8L" id="MgF-vh-Y8h"/>
+                        <outlet property="backupSuccessField" destination="Iq1-2Y-hU4" id="oGR-jC-WwT"/>
                         <outlet property="choiceCountLab" destination="svo-iM-HET" id="G3c-aF-tPf"/>
                         <outlet property="deleteProblemButton" destination="myw-5w-vYD" id="SxB-fj-m8a"/>
                         <outlet property="fillInblanksCountLab" destination="K2S-Z9-WXW" id="hm5-Aq-50S"/>
