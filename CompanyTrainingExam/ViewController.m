@@ -440,6 +440,8 @@
     [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
         if (returnCode == NSAlertFirstButtonReturn ) {
             [self deleteAllData];
+            [self allProblem];
+            [self.problemTableView reloadData];
         }else if (returnCode == NSAlertSecondButtonReturn){
             
         }
