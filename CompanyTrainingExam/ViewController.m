@@ -118,10 +118,10 @@
             NSInteger typeIndex = 0;
             if([str_type isEqualToString:@"选择题"]) {
                 typeIndex = 0;
-            } else if ([str_type isEqualToString:@"论述题"]) {
-                typeIndex = 2;
             } else if ([str_type isEqualToString:@"填空题"]) {
                 typeIndex = 1;
+            } else if ([str_type isEqualToString:@"论述题"]) {
+                typeIndex = 2;
             }
             [self.tagField selectItemAtIndex:typeIndex];
             
@@ -478,7 +478,8 @@
             if(obj.problemid.integerValue == self.currentSelectProblem.problemid.integerValue) {
                 obj.problem = self.textField.stringValue;
                 obj.answer = self.answerField.stringValue;
-                obj.type = self.tagField.stringValue;
+                
+                obj.type = self.tagField.selectedItem.title;
             }
         }
         if (![_context save:&error]) {
