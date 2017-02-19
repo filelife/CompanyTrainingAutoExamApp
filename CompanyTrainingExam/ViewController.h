@@ -18,6 +18,12 @@
 @property (nonatomic, strong) IBOutlet NSTextField * judgeCountLab;
 @property (nonatomic, strong) IBOutlet NSSearchField * searchField;
 @property (nonatomic, strong) IBOutlet NSTextField * backupSuccessField;
+@property (nonatomic, strong) IBOutlet NSTextField * textField;
+@property (nonatomic, strong) IBOutlet NSTextField * answerField;
+@property (nonatomic, strong) IBOutlet NSPopUpButton * tagField;
+@property (nonatomic, strong) IBOutlet NSButton * okButton;
+@property (nonatomic, strong) IBOutlet NSButton * editButton;
+
 - (IBAction)freshDataClicked:(id)sender;
 - (IBAction)deleteData:(id)sender;
 - (IBAction)searchAnswer:(id)sender;
@@ -25,5 +31,6 @@
 - (IBAction)readBackUp:(id)sender;
 - (IBAction)deleteAllData:(id)sender;
 - (IBAction)searchFieldBecomeFristResponse:(id)sender;
+- (IBAction)editProblem:(id)sender;
 @end
 

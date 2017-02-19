@@ -10,6 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "ProblemEntity+CoreDataClass.h"
 #import "AppDelegate.h"
+#import "NSTextField(copypast).h"
 @interface AddProblemViewController ()
 @property (nonatomic, strong) NSManagedObjectContext * context;
 @end

@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "AppDelegate.h"
 #import "ProblemEntity+CoreDataProperties.h"
+#import "NSTextField(copypast).h"
 #define HEX_RGBA(s,a) [NSColor colorWithRed:(((s & 0xFF0000) >> 16))/255.0 green:(((s &0xFF00) >>8))/255.0 blue:((s & 0xFF))/255.0 alpha:a]
 #define BackgroundColor HEX_RGBA(0xffb3a7,0.1)
 #define SelectColor HEX_RGBA(0xffc20e,0.8)
@@ -20,6 +21,8 @@
 @property (nonatomic, strong) ProblemEntity * currentSelectProblem;
 @property (nonatomic, strong) NSAlert *backUpAlert;
 @property (nonatomic, assign) BOOL isInSearch;
+@property (nonatomic, assign) BOOL isEditing;
+@property (nonatomic, assign) NSInteger clickTimes;
 @end
 @implementation ViewController
 
@@ -49,8 +52,10 @@
                                              selector:@selector(writeToBackFile)
                                                  name:@"BackUpData"
                                                object:nil];
-    
+    [self.problemTableView setDoubleAction:@selector(doubleClickAtIndex:)];
     _isInSearch = NO;
+    _isEditing = NO;
+    _clickTimes = 0;
     self.searchResArray = [NSMutableArray array];
 }
 
@@ -71,24 +76,86 @@
     
 }
 #pragma mark action
+- (void) doubleClickAtIndex:(id)sender {
+    NSTableView * tableView = (NSTableView *)sender;
+    if(tableView.selectedRow >= 0) {
+        ProblemEntity * entity = [self.problemArray objectAtIndex:tableView.selectedRow];
+    }
+}
 
 - (void)setRepresentedObject:(id)representedObject {
     [super setRepresentedObject:representedObject];
 }
 
+- (IBAction)buttonClicked:(id)sender {
+    if(_isEditing == YES) {
+        [self editData];
+    } else {
+        [self addProblem];
+    }
+    
+}
+
+- (IBAction)editProblem:(id)sender {
+    if(_isEditing == YES) {
+        _isEditing = NO;
+        [self.okButton setTitle:@"添加"];
+        [self.editButton setTitle:@"编辑"];
+        self.textField.stringValue = @"";
+        self.answerField.stringValue = @"";
+        [self.tagField selectItemAtIndex:0];
+    } else {
+        if(self.currentSelectProblem) {
+            _isEditing = YES;
+            [self.okButton setTitle:@"修改"];
+            [self.editButton setTitle:@"取消编辑"];
+            
+            
+            
+            self.textField.stringValue = self.currentSelectProblem.problem;
+            self.answerField.stringValue = self.currentSelectProblem.answer;
+            NSString * str_type = self.currentSelectProblem.type;
+            NSInteger typeIndex = 0;
+            if([str_type isEqualToString:@"选择题"]) {
+                typeIndex = 0;
+            } else if ([str_type isEqualToString:@"论述题"]) {
+                typeIndex = 2;
+            } else if ([str_type isEqualToString:@"填空题"]) {
+                typeIndex = 1;
+            }
+            [self.tagField selectItemAtIndex:typeIndex];
+            
+        } else {
+            [self noticAlertWithString:@"还未选定题目。"];
+        }
+    }
+    
+}
+
 - (IBAction)searchFieldBecomeFristResponse:(id)sender {
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"SearchData" object:self];
 }
 
 - (void)searchFieldBecomeFristResponse {
-    
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     self.searchField.stringValue = @" ";
     [self.searchField becomeFirstResponder];
     
 }
 
 - (IBAction)deleteAllData:(id)sender {
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"DeleteData" object:self];
 }
@@ -96,22 +163,42 @@
 
 
 - (IBAction)freshDataClicked:(id)sender {
-    self.searchField.stringValue = @"";
-    self.isInSearch = NO;
-    [self allProblem];
-    [self.problemTableView reloadData];
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
+    _clickTimes++;
+    if(_clickTimes < 2) {
+        self.searchField.stringValue = @"";
+        self.isInSearch = NO;
+        [self allProblem];
+        self.currentSelectProblem = nil;
+        [self.problemTableView reloadData];
+    } else {
+        [self noticAlertWithString:@"当前操作太快，请稍作休息再试"];
+        _clickTimes = 0;
+    }
+    
 }
 
 - (IBAction)deleteData:(id)sender {
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     if(self.currentSelectProblem) {
         [self showDeleteAlert];
     } else {
-        [self noSelectProblem];
+        [self noticAlertWithString:@"还未选定题目。"];
     }
     
 }
 
 - (IBAction)backUp:(id)sender {
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"BackUpData" object:self];
     
@@ -119,11 +206,19 @@
 
 
 - (IBAction)readBackUp:(id)sender {
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     [self openBackUpFilePath];
 }
 
 
 - (IBAction)searchAnswer:(id)sender {
+    if(_isEditing == YES) {
+        [self noticAlertWithString:@"当前正在编辑中，请取消编辑后再操作。"];
+        return;
+    }
     NSSearchField * searchField = (NSSearchField *)sender;
     [self updateSearchKeyWord:[searchField stringValue]];
 }
@@ -206,13 +301,13 @@
             NSString * str_type = [dic objectForKey:@"type"];
             if([str_type isEqualToString:@"选择题"]) {
                 choiceCount++;
-            } else if ([str_type isEqualToString:@"判断题"]) {
+            } else if ([str_type isEqualToString:@"论述题"]) {
                 judgeCount++;
             } else if ([str_type isEqualToString:@"填空题"]) {
                 fillCount++;
             }
         }
-        NSString *  str = [NSString stringWithFormat:@"备份题库包含选择题: %ld道,填空题: %ld道,判断题: %ld道。请选择数据恢复方式。",choiceCount,fillCount,judgeCount];
+        NSString *  str = [NSString stringWithFormat:@"备份题库包含选择题: %ld道,填空题: %ld道,论述题: %ld道。请选择数据恢复方式。",choiceCount,fillCount,judgeCount];
         [self showIfReadBackUpAlert:str withData:data];
     } else {
         
@@ -253,13 +348,12 @@
 
 - (void)count {
     NSInteger choiceCount = 0,fillInBlanksCount = 0, judgeCount = 0;
-    
     for(ProblemEntity * entity in self.problemArray) {
         if([entity.type isEqualToString:@"选择题"]) {
             choiceCount++;
         } else if([entity.type isEqualToString:@"填空题"]) {
             fillInBlanksCount++;
-        } else if([entity.type isEqualToString:@"判断题"]) {
+        } else if([entity.type isEqualToString:@"论述题"]) {
             judgeCount++;
         }
     }
@@ -285,25 +379,31 @@
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
-    if(_isInSearch == NO) {
-        self.currentSelectProblem = [self.problemArray objectAtIndex:row];
+    if(_isEditing == YES) {
+        return NO;
     } else {
-        self.currentSelectProblem = [self.searchResArray objectAtIndex:row];
+        if(_isInSearch == NO) {
+            self.currentSelectProblem = [self.problemArray objectAtIndex:row];
+        } else {
+            self.currentSelectProblem = [self.searchResArray objectAtIndex:row];
+        }
+        
+        for(int i = 0; i < self.problemArray.count;i++) {
+            NSTableRowView * tableRow = [self.problemTableView rowViewAtRow:i makeIfNecessary:YES];
+            if(i == row) {
+                tableRow.layer.masksToBounds = YES;
+                tableRow.layer.borderWidth = 3;
+                tableRow.layer.borderColor = SelectColor.CGColor;
+            } else {
+                tableRow.layer.masksToBounds = NO;
+                tableRow.layer.borderWidth = 0;
+                tableRow.layer.borderColor = [NSColor clearColor].CGColor;
+            }
+        }
+        return YES;
     }
     
-    for(int i = 0; i < self.problemArray.count;i++) {
-        NSTableRowView * tableRow = [self.problemTableView rowViewAtRow:i makeIfNecessary:YES];
-        if(i == row) {
-            tableRow.layer.masksToBounds = YES;
-            tableRow.layer.borderWidth = 3;
-            tableRow.layer.borderColor = SelectColor.CGColor;
-        } else {
-            tableRow.layer.masksToBounds = YES;
-            tableRow.layer.borderWidth = 0;
-            
-        }
-    }
-    return YES;
+    
 }
 
 - (nullable NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(nullable NSTableColumn *)tableColumn row:(NSInteger)row {
@@ -336,6 +436,9 @@
     } else {
         tableRow.backgroundColor = [NSColor clearColor];
     }
+    tableRow.layer.masksToBounds = NO;
+    tableRow.layer.borderWidth = 0;
+    tableRow.layer.borderColor = [NSColor clearColor].CGColor;
     
     return view;
 }
@@ -363,6 +466,30 @@
     }
 
 }
+- (void)editData {
+    NSEntityDescription *description = [NSEntityDescription entityForName:@"ProblemEntity" inManagedObjectContext:_context];
+    NSFetchRequest *request = [[NSFetchRequest alloc] init];
+    [request setIncludesPropertyValues:NO];
+    [request setEntity:description];
+    NSError *error = nil;
+    NSArray *datas = [_context executeFetchRequest:request error:&error];
+    if (!error && datas && [datas count]) {
+        for (ProblemEntity *obj in datas) {
+            if(obj.problemid.integerValue == self.currentSelectProblem.problemid.integerValue) {
+                obj.problem = self.textField.stringValue;
+                obj.answer = self.answerField.stringValue;
+                obj.type = self.tagField.stringValue;
+            }
+        }
+        if (![_context save:&error]) {
+            NSLog(@"error:%@",error);
+        }
+    }
+    [self editProblem:nil];
+    [self allProblem];
+    [self.problemTableView reloadData];
+}
+
 
 - (void)deleteAllData {
     NSEntityDescription *description = [NSEntityDescription entityForName:@"ProblemEntity" inManagedObjectContext:_context];
@@ -416,14 +543,12 @@
     // 直接查询字表中的条件
     // 2. 让_context执行查询数据
     AppDelegate * appDelegate = (AppDelegate *)[NSApplication sharedApplication].delegate;
-    self.problemArray = [appDelegate.managedObjectContext executeFetchRequest:request error:nil];
-    for (ProblemEntity *p in self.problemArray) {
-        NSLog(@"Data:%ld %@ %@ %@\n",p.problemid.integerValue, p.problem, p.type, p.answer);
-        
-       
-        
+    NSError * error = nil;
+    self.problemArray = [appDelegate.managedObjectContext executeFetchRequest:request error:&error];
+    if(error == nil){
+        [self count];
     }
-    [self count];
+    
 }
 
 #pragma mark - Alert
@@ -448,28 +573,6 @@
     }];
 }
 
-
-- (void)noSelectProblem {
-    NSAlert *alert = [[NSAlert alloc]init];
-    //添加两个按钮吧
-    [alert addButtonWithTitle:@"确定"];
-    
-    alert.icon = [NSImage imageNamed:@"test_icon.png"];
-    //正文
-    alert.messageText = @"删除";
-    //描述文字
-    alert.informativeText = @"还未选定要删除的题目。";
-    //弹窗类型 默认类型 NSAlertStyleWarning
-    [alert setAlertStyle:NSAlertStyleWarning];
-    //回调Block
-    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
-        if (returnCode == NSAlertFirstButtonReturn ) {
-        }else if (returnCode == NSAlertSecondButtonReturn){
-            
-        }
-    }];
-    
-}
 
 - (void)showIfReadBackUpAlert:(NSString *)showString withData:(NSArray *)dataArray{
     NSAlert *alert = [[NSAlert alloc]init];
@@ -526,5 +629,85 @@
         }
     }];
 }
+
+- (void)noticAlertWithString:(NSString *)string {
+    NSAlert *alert = [[NSAlert alloc]init];
+    
+    alert.icon = [NSImage imageNamed:@"test_icon.png"];
+    
+    [alert addButtonWithTitle:@"确认"];
+    
+    alert.messageText = @"提示";
+    
+    alert.informativeText = string;
+    
+    [alert setAlertStyle:NSAlertStyleWarning];
+    
+    [alert beginSheetModalForWindow:[self.view window] completionHandler:^(NSModalResponse returnCode) {
+        if (returnCode == NSAlertFirstButtonReturn ) {
+            
+        }else if (returnCode == NSAlertSecondButtonReturn){
+            
+        }
+    }];
+}
+
+
+
+/**
+ 新增个人记录
+ */
+- (void)addProblem {
+    if(self.textField.stringValue.length == 0 ||
+       self.answerField.stringValue.length == 0) {
+        [self noticAlertWithString:@"未输入问题或者答案，请输入后再提交。"];
+        return;
+    }
+    /**
+     回顾SQL新增记录的过程
+     
+     1. 拼接一个INSERT的SQL语句
+     2. 执行SQL
+     */
+    // 1. 实例化并让context“准备”将一条个人记录增加到数据库
+    
+    ProblemEntity *p = [NSEntityDescription insertNewObjectForEntityForName:@"ProblemEntity" inManagedObjectContext:_context];
+    if(self.textField.stringValue.length) {
+        p.problem = self.textField.stringValue;
+    }
+    if(self.answerField.stringValue.length) {
+        p.answer = self.answerField.stringValue;
+    }
+    if(self.tagField.stringValue.length) {
+        p.type = self.tagField.selectedItem.title;
+    }
+    p.problemid = [self getMaxID];
+    
+    // 3. 保存(让context保存当前的修改)
+    if ([_context save:nil]) {
+        NSLog(@"新增成功");
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"FreshData" object:self];
+        self.textField.stringValue = @"";
+        self.answerField.stringValue = @"";
+        [self.textField becomeFirstResponder];
+    } else {
+        NSLog(@"新增失败");
+    }
+}
+
+- (NSNumber *) getMaxID {
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"ProblemInfo" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+    NSNumber * mlastMaxId = [data objectForKey:@"lastMaxId"];
+    NSInteger mMaxId = mlastMaxId.integerValue + 1;
+    [data setValue:@(mMaxId) forKey:@"lastMaxId"];
+    [data writeToFile:plistPath atomically:YES];
+    return @(mMaxId);
+    
+}
+
+
 
 @end

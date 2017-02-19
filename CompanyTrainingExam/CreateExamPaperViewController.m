@@ -45,7 +45,7 @@
     for(ProblemEntity * entity in self.problemArray) {
         if([entity.type isEqualToString:@"选择题"]) {
             [self.choiceArray addObject:entity];
-        } else if([entity.type isEqualToString:@"判断题"]) {
+        } else if([entity.type isEqualToString:@"论述题"]) {
             [self.judgmentArray addObject:entity];
         } else if([entity.type isEqualToString:@"填空题"]){
             [self.fillInTheBlanksArray addObject:entity];
@@ -153,8 +153,8 @@
     }
     if(judgeRandomArray.count) {
         section++;
-        self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、判断题:\n",[self getSectionChar:section]]];
-        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、判断题:\n"]];
+        self.examContext = [self.examContext stringByAppendingString:[NSString stringWithFormat:@"%@、论述题:\n",[self getSectionChar:section]]];
+        answer = [answer stringByAppendingString:[NSString stringWithFormat:@"\n三、论述题:\n"]];
     }
     
     for(ProblemEntity * entity in judgeRandomArray) {

@@ -12,6 +12,7 @@
 		BF8A707A1E50601A00721B34 /* ProblemInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BF8A70791E50601A00721B34 /* ProblemInfo.plist */; };
 		BF8A707D1E50A6B100721B34 /* CreateExamPaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A707C1E50A6B100721B34 /* CreateExamPaperViewController.m */; };
 		BF8A70801E50BAB200721B34 /* AddProblemWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF8A707F1E50BAB200721B34 /* AddProblemWindowController.m */; };
+		BFB7D9061E59DF7600DC1DDB /* NSTextField(copypast).m in Sources */ = {isa = PBXBuildFile; fileRef = BFB7D9051E59DF7600DC1DDB /* NSTextField(copypast).m */; };
 		BFB8079F1E4D954E00F48235 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB8079E1E4D954E00F48235 /* AppDelegate.m */; };
 		BFB807A21E4D954E00F48235 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB807A11E4D954E00F48235 /* main.m */; };
 		BFB807A51E4D954E00F48235 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB807A41E4D954E00F48235 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 		BF8A707C1E50A6B100721B34 /* CreateExamPaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateExamPaperViewController.m; sourceTree = "<group>"; };
 		BF8A707E1E50BAB200721B34 /* AddProblemWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddProblemWindowController.h; sourceTree = "<group>"; };
 		BF8A707F1E50BAB200721B34 /* AddProblemWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddProblemWindowController.m; sourceTree = "<group>"; };
+		BFB7D9041E59DF7600DC1DDB /* NSTextField(copypast).h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTextField(copypast).h"; sourceTree = "<group>"; };
+		BFB7D9051E59DF7600DC1DDB /* NSTextField(copypast).m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTextField(copypast).m"; sourceTree = "<group>"; };
 		BFB8079A1E4D954E00F48235 /* CompanyTrainingExam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompanyTrainingExam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB8079D1E4D954E00F48235 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BFB8079E1E4D954E00F48235 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +125,8 @@
 				BF8A707C1E50A6B100721B34 /* CreateExamPaperViewController.m */,
 				BF8A707E1E50BAB200721B34 /* AddProblemWindowController.h */,
 				BF8A707F1E50BAB200721B34 /* AddProblemWindowController.m */,
+				BFB7D9041E59DF7600DC1DDB /* NSTextField(copypast).h */,
+				BFB7D9051E59DF7600DC1DDB /* NSTextField(copypast).m */,
 			);
 			path = CompanyTrainingExam;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 			files = (
 				BF8A707D1E50A6B100721B34 /* CreateExamPaperViewController.m in Sources */,
 				BFB807A81E4D954E00F48235 /* CompanyTrainingExam.xcdatamodeld in Sources */,
+				BFB7D9061E59DF7600DC1DDB /* NSTextField(copypast).m in Sources */,
 				BF8A70801E50BAB200721B34 /* AddProblemWindowController.m in Sources */,
 				BFB807A51E4D954E00F48235 /* ViewController.m in Sources */,
 				BF8A70781E5036C300721B34 /* ProblemEntity+CoreDataProperties.m in Sources */,

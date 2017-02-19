@@ -184,18 +184,18 @@ DQ
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" placeholderIntrinsicWidth="800" placeholderIntrinsicHeight="600" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="452"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView identifier="Problem" wantsLayer="YES" fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MON-9m-ESC">
-                                <rect key="frame" x="61" y="73" width="678" height="293"/>
+                                <rect key="frame" x="91" y="52" width="636" height="186"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="WeL-72-R1z">
-                                    <rect key="frame" x="1" y="0.0" width="676" height="292"/>
+                                    <rect key="frame" x="1" y="0.0" width="634" height="185"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="ahV-nV-qaN" viewBased="YES" id="wTk-gV-VX9">
-                                            <rect key="frame" x="0.0" y="0.0" width="676" height="269"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="634" height="162"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -267,7 +267,7 @@ DQ
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="problem" width="395" minWidth="10" maxWidth="3.4028234663852886e+38" id="5EW-yQ-eOh">
+                                                <tableColumn identifier="problem" width="288" minWidth="10" maxWidth="3.4028234663852886e+38" id="5EW-yQ-eOh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="题目">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -281,11 +281,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="PQT-Cy-1ln">
-                                                            <rect key="frame" x="175" y="1" width="395" height="17"/>
+                                                            <rect key="frame" x="175" y="1" width="288" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J3S-IJ-tnP">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="395" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="288" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="54K-xr-K7i">
                                                                         <font key="font" metaFont="system"/>
@@ -300,7 +300,7 @@ DQ
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="answer" width="101" minWidth="10" maxWidth="3.4028234663852886e+38" id="AFr-Zz-AMW">
+                                                <tableColumn identifier="answer" width="166" minWidth="10" maxWidth="3.4028234663852886e+38" id="AFr-Zz-AMW">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="答案">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -314,11 +314,11 @@ DQ
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="qHj-qy-sSP">
-                                                            <rect key="frame" x="573" y="1" width="101" height="17"/>
+                                                            <rect key="frame" x="466" y="1" width="166" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Il9-92-MgF">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="WbH-nU-keX">
                                                                         <font key="font" metaFont="system"/>
@@ -346,25 +346,12 @@ DQ
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="ahV-nV-qaN">
-                                    <rect key="frame" x="0.0" y="0.0" width="676" height="23"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="634" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XDa-jy-q8L">
-                                <rect key="frame" x="664" y="25" width="81" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                <buttonCell key="cell" type="push" title="新增题目" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bzT-3f-lGa" userLabel="New">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">n</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <segue destination="y9e-lV-5PH" kind="show" id="9Rh-ac-Te9"/>
-                                </connections>
-                            </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="myw-5w-vYD">
-                                <rect key="frame" x="561" y="25" width="81" height="32"/>
+                                <rect key="frame" x="652" y="13" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                 <buttonCell key="cell" type="push" title="删除" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GuX-tk-tNL">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -375,7 +362,7 @@ DQ
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ED3-Xe-j20">
-                                <rect key="frame" x="461" y="25" width="81" height="32"/>
+                                <rect key="frame" x="552" y="13" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                 <buttonCell key="cell" type="push" title="创建试卷" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="F3k-Hb-ZW5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -388,7 +375,7 @@ DQ
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wSX-Kz-hp2">
-                                <rect key="frame" x="59" y="390" width="60" height="17"/>
+                                <rect key="frame" x="89" y="445" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="选择题" id="5QT-SM-Pz4">
                                     <font key="font" metaFont="smallSystem"/>
@@ -397,7 +384,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svo-iM-HET">
-                                <rect key="frame" x="59" y="409" width="60" height="17"/>
+                                <rect key="frame" x="89" y="464" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="0 道" id="i6c-bN-Dk9">
                                     <font key="font" metaFont="system"/>
@@ -406,7 +393,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aY2-Ok-q0t">
-                                <rect key="frame" x="142" y="390" width="60" height="17"/>
+                                <rect key="frame" x="172" y="445" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="填空题" id="BtR-IO-wtC">
                                     <font key="font" metaFont="smallSystem"/>
@@ -415,7 +402,7 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2S-Z9-WXW">
-                                <rect key="frame" x="142" y="409" width="60" height="17"/>
+                                <rect key="frame" x="172" y="464" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="0 道" id="A3I-be-Shx">
                                     <font key="font" metaFont="system"/>
@@ -424,16 +411,16 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4kO-s6-xKP">
-                                <rect key="frame" x="220" y="390" width="60" height="17"/>
+                                <rect key="frame" x="250" y="445" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="判断题" id="tcM-GM-aiX">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="论述题" id="tcM-GM-aiX">
                                     <font key="font" metaFont="smallSystem"/>
                                     <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wm2-kC-xOl">
-                                <rect key="frame" x="220" y="409" width="60" height="17"/>
+                                <rect key="frame" x="250" y="464" width="60" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="0 道" id="CSY-eI-d1W">
                                     <font key="font" metaFont="system"/>
@@ -442,15 +429,15 @@ DQ
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="XNE-sY-hys">
-                                <rect key="frame" x="126" y="390" width="5" height="35"/>
+                                <rect key="frame" x="156" y="445" width="5" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="jeA-qA-Lbl">
-                                <rect key="frame" x="211" y="390" width="5" height="35"/>
+                                <rect key="frame" x="241" y="445" width="5" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qbb-CP-U6Y">
-                                <rect key="frame" x="467" y="390" width="272" height="22"/>
+                                <rect key="frame" x="465" y="246" width="262" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="搜索" usesSingleLineMode="YES" bezelStyle="round" id="zin-6H-Qun">
                                     <font key="font" metaFont="system"/>
@@ -461,8 +448,94 @@ DQ
                                     <action selector="searchAnswer:" target="XfG-lQ-9wD" id="HHQ-29-ntd"/>
                                 </connections>
                             </searchField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IFO-u2-ySH">
+                                <rect key="frame" x="465" y="343" width="262" height="94"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="请输入答案" drawsBackground="YES" allowsEditingTextAttributes="YES" id="Eme-Zl-vlT">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0CY-65-zwa">
+                                <rect key="frame" x="59" y="420" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="题目" id="agf-Lb-VWF">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mOP-Hi-POc">
+                                <rect key="frame" x="428" y="420" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="答案" id="kBS-cg-lLY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgE-Q7-Jkx">
+                                <rect key="frame" x="59" y="221" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="题库" id="bkP-VT-L5k">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bcH-DJ-PBf">
+                                <rect key="frame" x="91" y="307" width="266" height="130"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="请输入问题及选项" drawsBackground="YES" id="moh-cm-5C3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRk-go-rOF">
+                                <rect key="frame" x="652" y="300" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="添加试题" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GlF-HV-tTF">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonClicked:" target="XfG-lQ-9wD" id="5zs-D2-L9I"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gSm-Jy-tNo">
+                                <rect key="frame" x="428" y="309" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="类型" id="0S4-mL-KJi">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0UD-ma-9pD">
+                                <rect key="frame" x="463" y="303" width="90" height="26"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="选择题" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="xQy-m1-9Vb" id="Yzy-TF-Do1">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <string key="keyEquivalent">t</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                                    <menu key="menu" id="uaG-Ic-Tht">
+                                        <items>
+                                            <menuItem title="选择题" state="on" keyEquivalent="1" id="xQy-m1-9Vb"/>
+                                            <menuItem title="填空题" keyEquivalent="2" id="EkD-ZK-nkH"/>
+                                            <menuItem title="论述题" keyEquivalent="3" id="Svm-yh-mGh" userLabel="论述题"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="spZ-Of-KfC">
-                                <rect key="frame" x="360" y="25" width="81" height="32"/>
+                                <rect key="frame" x="455" y="13" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="刷新" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4W4-Lj-Beq">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -474,148 +547,41 @@ DQ
                                     <action selector="freshDataClicked:" target="XfG-lQ-9wD" id="MQp-eM-2e6"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Iq1-2Y-hU4">
-                                <rect key="frame" x="683" y="420" width="58" height="17"/>
+                            <box horizontalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="kSa-RS-ygs">
+                                <rect key="frame" x="398" y="308" width="5" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                            </box>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RC0-El-6TA">
+                                <rect key="frame" x="360" y="13" width="81" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" id="Yig-MF-pVV">
+                                <buttonCell key="cell" type="push" title="编辑" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dWT-mE-tXU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="scrollBarColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="editProblem:" target="XfG-lQ-9wD" id="LoF-mD-Y68"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
                         <outlet property="addExamPaperButton" destination="ED3-Xe-j20" id="nUQ-Q8-w4p"/>
-                        <outlet property="addProbelmButton" destination="XDa-jy-q8L" id="MgF-vh-Y8h"/>
-                        <outlet property="backupSuccessField" destination="Iq1-2Y-hU4" id="oGR-jC-WwT"/>
+                        <outlet property="answerField" destination="IFO-u2-ySH" id="VuK-fv-4D4"/>
                         <outlet property="choiceCountLab" destination="svo-iM-HET" id="G3c-aF-tPf"/>
                         <outlet property="deleteProblemButton" destination="myw-5w-vYD" id="SxB-fj-m8a"/>
+                        <outlet property="editButton" destination="RC0-El-6TA" id="74h-7g-WIX"/>
                         <outlet property="fillInblanksCountLab" destination="K2S-Z9-WXW" id="hm5-Aq-50S"/>
                         <outlet property="judgeCountLab" destination="Wm2-kC-xOl" id="kwD-EB-9lj"/>
+                        <outlet property="okButton" destination="rRk-go-rOF" id="mPm-nb-Kq3"/>
                         <outlet property="problemTableView" destination="wTk-gV-VX9" id="bJg-D8-AW2"/>
                         <outlet property="searchField" destination="qbb-CP-U6Y" id="SS6-OW-Xmo"/>
+                        <outlet property="tagField" destination="0UD-ma-9pD" id="r4W-kY-1hh"/>
+                        <outlet property="textField" destination="bcH-DJ-PBf" id="L8V-nN-vqC"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="299" y="1142"/>
-        </scene>
-        <!--Window Controller-->
-        <scene sceneID="7Y3-YW-nFF">
-            <objects>
-                <windowController id="y9e-lV-5PH" customClass="AddProblemWindowController" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="fhQ-ig-s4U">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="294" y="313" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
-                    </window>
-                    <connections>
-                        <segue destination="Sh9-gv-RUc" kind="relationship" relationship="window.shadowedContentViewController" id="V5E-z5-ZaF"/>
-                    </connections>
-                </windowController>
-                <customObject id="gzL-p0-6nO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1114" y="1210"/>
-        </scene>
-        <!--Add Problem View Controller-->
-        <scene sceneID="ZYO-jN-OCp">
-            <objects>
-                <viewController id="Sh9-gv-RUc" customClass="AddProblemViewController" sceneMemberID="viewController">
-                    <view key="view" id="h0e-mP-eCW">
-                        <rect key="frame" x="0.0" y="0.0" width="657" height="396"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pdH-Zf-C1q">
-                                <rect key="frame" x="468" y="13" width="128" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="push" title="添加" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="dHB-Rq-lcT">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="buttonClicked:" target="Sh9-gv-RUc" id="76f-Cq-pw2"/>
-                                </connections>
-                            </button>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uNk-ym-fqo">
-                                <rect key="frame" x="100" y="72" width="490" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="left" placeholderString="请输入答案" drawsBackground="YES" allowsEditingTextAttributes="YES" id="Zci-Fm-mfg">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MZ6-EH-orb">
-                                <rect key="frame" x="50" y="363" width="37" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="题目" id="5f6-BA-OZu">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="da3-Vp-uzb">
-                                <rect key="frame" x="50" y="96" width="37" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="答案" id="YDj-vs-1X2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wcI-QM-NUa">
-                                <rect key="frame" x="50" y="25" width="37" height="17"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="类型" id="3S5-91-YlY">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="C3G-I7-ga0">
-                                <rect key="frame" x="100" y="146" width="490" height="234"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="请输入问题及选项" drawsBackground="YES" id="fyI-XY-tkT">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1gz-7z-9va">
-                                <rect key="frame" x="98" y="17" width="90" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="选择题" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="LwN-gz-QZL" id="If6-6i-Lqe">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <string key="keyEquivalent">t</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                    <menu key="menu" id="Ry7-8Y-6nK">
-                                        <items>
-                                            <menuItem title="选择题" state="on" id="LwN-gz-QZL"/>
-                                            <menuItem title="填空题" id="B2g-a2-i1u"/>
-                                            <menuItem title="判断题" id="GyN-z0-T9G"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="answerField" destination="uNk-ym-fqo" id="aMc-rw-iMD"/>
-                        <outlet property="okButton" destination="pdH-Zf-C1q" id="FMW-yS-ZzV"/>
-                        <outlet property="tagField" destination="1gz-7z-9va" id="tPg-jc-Gz7"/>
-                        <outlet property="textField" destination="C3G-I7-ga0" id="P3T-vF-FCp"/>
-                    </connections>
-                </viewController>
-                <customObject id="FlD-ox-YsV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1764" y="1266"/>
+            <point key="canvasLocation" x="299" y="1172"/>
         </scene>
         <!--创建考卷-->
         <scene sceneID="z7a-zc-fBW">
@@ -673,7 +639,7 @@ DQ
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EkC-zl-dS5">
                                 <rect key="frame" x="67" y="81" width="44" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="判断题" id="ApV-lW-9Ux">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="论述题" id="ApV-lW-9Ux">
                                     <font key="font" size="13" name=".PingFangSC-Regular"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -757,7 +723,7 @@ DQ
                 </viewController>
                 <customObject id="gs4-9L-cZm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="306.5" y="1689.5"/>
+            <point key="canvasLocation" x="300" y="1781"/>
         </scene>
     </scenes>
     <resources>
