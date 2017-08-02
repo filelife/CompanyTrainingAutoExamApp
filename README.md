@@ -1,12 +1,10 @@
-# 随机出题应用 （MacOS平台）
-为企业培训随机生成考卷,支持数据备份,数据恢复功能。该项目为MacOS应用，用户可通过快捷键高效完成操作。
+# Auto setting Question (For Mac)
+Generate a test for enterprise training with rendom questions, has DB management. Also support data backup, data recovery. The project is a MacOS application that enables users to perform operations efficiently through shortcuts.
 ##
-###需求描述
-##### 用户场景：需求源自于中国人寿人力资源部门关于《基本法》的培训考核。该部门每周都要对部分新员工进行培训，并进行考试。该部门有一套考核题库，每周的考试要从题库中抽取，组成试卷，进行线下考试。管理者每周事务繁忙，出题一事目前仍在手动创建，十分不便。希望以后每周考试，可以一键随机出卷，并且能够记录每一期考核的考卷。
-### 现有功能：
-##### 1.新增题目，可选题目类型。
-##### 2.题库搜索，支持标题搜索、题目搜索、答案搜索等多种方式。
-##### 3.随机出题，创建试卷，可以设置体量，并从题库中随机抽取题目。
-##### 4.备份功能，在本地保留plist文件对题库进行备份保存。
-##### 5.备份数据导入，通过文件选择器，选择备份数据，将备份数据重新导入进当前题库中。
-##### 6.大部分功能操作支持快捷键。
+### Function
+##### 1.Add different type question to DB.
+##### 2.Search question by type or fuzzy query.
+##### 3.Generate a test with rendom questions.
+##### 4.Backing up with plist file.
+##### 5.Data recovery by back up file.
+##### 6.Shortcuts
